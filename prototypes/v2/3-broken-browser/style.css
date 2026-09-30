@@ -1,0 +1,1475 @@
+/* ==========================================================================
+   Ode to Shelly / prototype 3: BROKEN BROWSER, round 2
+   A secret site you were lucky to find, now with a veil over it.
+   Default-browser Times, thin Helvetica for the giant wordmark, Courier
+   for prompts and labels. Black ink on white paper; olive and pink only
+   as tiny accents, plus scans of tulle, pins and a moodboard.
+   ========================================================================== */
+
+:root {
+  --ink: #111;
+  --paper: #fff;
+  --olive: #8a8600;
+  --chartreuse: #c4c200;
+  --pink: #f28ab9;
+  --pink-paper: #f1b7b7;
+  --label: #f7f3ec;
+
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --serif: "Times New Roman", Times, serif;
+  --mono: "Courier New", Courier, monospace;
+
+  --gutter: clamp(16px, 1.7vw, 32px);
+
+  --cur-shard: url("../../assets/cursor-shard.svg") 11 1, auto;
+  --cur-pin: url("../../assets/cursor-pin.svg") 1 1, pointer;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  cursor: var(--cur-shard);
+}
+
+body {
+  margin: 0;
+  background: transparent; /* lets the paper layer below show */
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.38;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* Sitewide paper: a scan of tiny cut threads, barely there */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -4vh -4vw; /* oversized so the scan's own edges never show */
+  z-index: -1;
+  background: url("../../assets/bg-threads-light.jpg") 50% 40% / cover no-repeat;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Cursors: pink shard by default, pearl pin on anything clickable,
+   plain text cursor in fields. Touch devices keep their defaults.
+   -------------------------------------------------------------------------- */
+
+a,
+button,
+summary,
+[role="button"],
+.opt,
+.opt input {
+  cursor: var(--cur-pin);
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea {
+  cursor: text;
+}
+
+@media (hover: none) {
+  html {
+    cursor: auto;
+  }
+
+  a,
+  button,
+  summary,
+  [role="button"],
+  .opt,
+  .opt input {
+    cursor: pointer;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Links: default-browser underline, ink colour. Visited = pink underline.
+   -------------------------------------------------------------------------- */
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+}
+
+a:visited {
+  color: var(--ink);
+  text-decoration-color: var(--pink);
+}
+
+a:hover {
+  background: var(--pink-paper);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--pink);
+  color: var(--ink);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 90;
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 0.4em 0.6em;
+}
+
+.skip:focus {
+  left: var(--gutter);
+  top: 56px;
+}
+
+/* Decrypt: hide the real text for a moment until script.js has swapped in
+   the glyph noise (the inline head script reveals it anyway after 1.5s). */
+.js:not(.dc-armed) [data-decrypt] {
+  visibility: hidden;
+}
+
+/* Blinking cursor, pink like the shard */
+.cursor {
+  display: inline-block;
+  color: var(--pink);
+  animation: blink 1.05s linear infinite;
+}
+
+@keyframes blink {
+  0%,
+  49.9% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 404 flicker on links that go nowhere */
+.flicker {
+  animation: flicker 0.5s linear 1;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  20% { opacity: 0.1; }
+  40% { opacity: 1; }
+  60% { opacity: 0.25; }
+  80% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   Corners: tiny "menu" top left, "inquiry >>" top right
+   -------------------------------------------------------------------------- */
+
+.corners {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  padding: 18px calc(var(--gutter) - 0.5em) 22px;
+  /* paper band that fades out, so scrolled text dissolves before it meets the links */
+  background: linear-gradient(to bottom, var(--paper) 55%, rgba(255, 255, 255, 0));
+  pointer-events: none;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.corner {
+  pointer-events: auto;
+  background: var(--paper);
+  padding: 0.35em 0.5em;
+  text-decoration: none;
+}
+
+.corner:visited {
+  color: var(--ink);
+}
+
+.corner:hover {
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--pink);
+}
+
+.corner--menu {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.corner--center {
+  grid-column: 2;
+  justify-self: center;
+  letter-spacing: 0.08em;
+}
+
+.corner--inquiry {
+  grid-column: 3;
+  justify-self: end;
+}
+
+/* --------------------------------------------------------------------------
+   Menu: a woven care label that slides down from under the top edge,
+   like a label sewn into a collar. Pink stitching, pinked bottom edge.
+   -------------------------------------------------------------------------- */
+
+.care-wrap {
+  position: fixed;
+  top: 0;
+  left: calc(var(--gutter) + 58px);
+  z-index: 2;
+  padding: 0 28px 44px 14px; /* room for the shadow and the tilt */
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility 0s linear 0.34s;
+}
+
+.care-wrap.is-open,
+.care-wrap:target {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.js .care-wrap:target:not(.is-open) {
+  visibility: hidden;
+}
+
+.care-drop {
+  transform: translateY(-102%);
+  transition: transform 0.34s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: drop-shadow(0 7px 9px rgba(17, 17, 17, 0.13)) drop-shadow(0 1px 1px rgba(17, 17, 17, 0.12));
+}
+
+.care-wrap.is-open .care-drop,
+.care-wrap:target .care-drop {
+  transform: none;
+}
+
+.js .care-wrap:target:not(.is-open) .care-drop {
+  transform: translateY(-102%);
+}
+
+.care {
+  position: relative;
+  width: 252px;
+  margin-top: -18px; /* the top is tucked under the seam */
+  padding: 50px 22px 34px;
+  pointer-events: auto;
+  transform: rotate(-2.2deg);
+  transform-origin: 0 0;
+  background-color: var(--label);
+  background-image:
+    linear-gradient(to bottom, rgba(17, 17, 17, 0.09), rgba(17, 17, 17, 0) 20px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 29px, rgba(17, 17, 17, 0.06) 30px, rgba(255, 255, 255, 0.9) 31px, rgba(0, 0, 0, 0) 33px),
+    repeating-linear-gradient(0deg, rgba(90, 70, 50, 0.05) 0 1px, transparent 1px 2px),
+    repeating-linear-gradient(90deg, rgba(90, 70, 50, 0.035) 0 1px, transparent 1px 3px);
+  /* pinking-shear teeth along the bottom edge */
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 9px 100%;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 9px 100%;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* the stitching */
+.care::before {
+  content: "";
+  position: absolute;
+  inset: 38px 9px 16px;
+  border: 1px dashed var(--pink);
+  pointer-events: none;
+}
+
+.care p {
+  margin: 0;
+}
+
+.care-brand {
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+}
+
+.care-rule {
+  margin: 0.45em 0 !important;
+  letter-spacing: 0.35em;
+  color: #777;
+}
+
+.care-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.85;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.care-list a {
+  padding: 0.05em 0.35em;
+  text-decoration: none;
+}
+
+.care-list a:visited {
+  color: var(--ink);
+}
+
+.care-list a:hover {
+  background: var(--pink-paper);
+}
+
+.care-list a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.care-list [aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--pink);
+  text-decoration-thickness: 2px;
+}
+
+.care-symbols svg {
+  display: block;
+  margin: 0.9em auto 0;
+  color: #444;
+}
+
+.care-nojs-close {
+  display: inline-block;
+  margin-top: 0.8em;
+  font-size: 12px;
+  text-transform: lowercase;
+}
+
+.js .care-nojs-close {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Toast (404) and the fixed "<< all prototypes" link
+   -------------------------------------------------------------------------- */
+
+.toast {
+  position: fixed;
+  left: var(--gutter);
+  bottom: var(--gutter);
+  z-index: 80;
+  max-width: calc(100vw - 2 * var(--gutter));
+  margin: 0;
+  padding: 0.6em 0.8em;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--pink);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s linear, transform 0.25s ease-out;
+  pointer-events: none;
+}
+
+.toast.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.proto-link {
+  position: fixed;
+  right: calc(var(--gutter) - 0.4em);
+  bottom: 10px;
+  z-index: 40;
+  padding: 0.3em 0.4em;
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.proto-link:visited {
+  color: var(--ink);
+}
+
+.proto-link:hover {
+  background: var(--pink-paper);
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   HOME: first screen is white paper with a giant thin wordmark, cropped
+   by the bottom edge of the viewport, a tulle veil lying over it
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.wordmark {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 0;
+  margin: 0 0 0 -0.03em;
+  font-family: var(--sans);
+  font-weight: 100;
+  /* fallback size; script.js fits it to the viewport */
+  font-size: min(20vw, 34vh);
+  line-height: 0.8;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+  /* push the bottom of the letters below the fold */
+  transform: translateY(0.17em);
+}
+
+.wordmark a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wordmark a:hover,
+.wordmark a:visited {
+  background: none;
+  color: var(--ink);
+}
+
+.wm-row {
+  display: block;
+}
+
+.wm-w {
+  display: inline;
+}
+
+/* The veil: grey tulle scan, inverted so the threads print dark, then
+   multiplied onto the paper and faded out towards the top left. */
+.veil {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  background: url("../../assets/img-tulle.jpg") right -160px top 60px / max(1300px, 90vw) auto no-repeat;
+  filter: grayscale(1) invert(1) contrast(2.6) brightness(1.5);
+  mix-blend-mode: multiply;
+  opacity: 0.13;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 62% 88%, #000 25%, rgba(0, 0, 0, 0.5) 55%, transparent 80%);
+  mask-image: radial-gradient(ellipse 75% 70% at 62% 88%, #000 25%, rgba(0, 0, 0, 0.5) 55%, transparent 80%);
+  animation: veil-drift 16s ease-in-out infinite alternate;
+}
+
+@keyframes veil-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-9px, 5px, 0);
+  }
+}
+
+/* Noise layer: shared */
+.noise {
+  position: absolute;
+  margin: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* caption lines cut by the paper edge (after Torn Page), set in Courier */
+.cap {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  line-height: 1.55;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--olive);
+  white-space: nowrap;
+}
+
+.cap > span {
+  display: block;
+  min-height: 1.55em;
+  transform: translateX(var(--cut, 0px));
+}
+
+.cap b {
+  color: var(--ink);
+  font-weight: bold;
+}
+
+.cap .p {
+  color: var(--pink);
+  text-transform: none;
+}
+
+/* orphan numbers and words, stacked */
+.orphans {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.o-ti {
+  font: italic 400 22px var(--serif);
+}
+
+.o-tl {
+  font: 400 30px var(--serif);
+  letter-spacing: -0.01em;
+}
+
+.o-c {
+  font: 400 11px var(--mono);
+  letter-spacing: 0.22em;
+}
+
+.o-ts {
+  font: 400 12px var(--serif);
+}
+
+.cap--home {
+  left: 0;
+  top: 29%;
+}
+
+.orphans--home {
+  left: 74%;
+  top: 35%;
+}
+
+.n-slash {
+  left: 41%;
+  top: 16%;
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1;
+  color: var(--olive);
+}
+
+/* --------------------------------------------------------------------------
+   Raw HTML document (both pages)
+   -------------------------------------------------------------------------- */
+
+.doc {
+  position: relative;
+  max-width: calc(37em + 2 * var(--gutter));
+  padding: 0 var(--gutter);
+}
+
+.doc h1,
+.doc h2 {
+  font-family: var(--serif);
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.doc h1 {
+  font-size: 2.4em;
+  margin: 0 0 0.25em;
+}
+
+.doc h2 {
+  font-size: 1.4em;
+  margin: 0 0 0.55em;
+  letter-spacing: 0.01em;
+}
+
+.doc p {
+  margin: 0 0 0.9em;
+}
+
+.doc section {
+  position: relative;
+}
+
+.contents-label {
+  font-size: 1em !important;
+  margin: 1.6em 0 0.25em !important;
+  letter-spacing: 0 !important;
+}
+
+.contents,
+.toc ol {
+  margin: 0 0 1em;
+  padding-left: 1.7em;
+}
+
+.contents {
+  list-style: disc;
+}
+
+.contents li,
+.toc li {
+  margin: 0.08em 0;
+}
+
+hr {
+  height: 0;
+  margin: 2.6em 0;
+  border: 0;
+  border-top: 1px solid var(--ink);
+}
+
+.prompt {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--olive);
+  margin: 0 0 1.4em !important;
+}
+
+/* Home, below the fold */
+.home-doc {
+  padding-top: 18vh;
+  padding-bottom: 4vh;
+}
+
+.home-doc h2 {
+  font-size: 1.55em;
+  margin-bottom: 0.15em;
+}
+
+.city {
+  font-size: 1.15em;
+}
+
+.intro {
+  font-size: 1.12em;
+  max-width: 32em;
+  margin-top: 1.4em !important;
+}
+
+/* Bridal */
+.bridal-doc {
+  padding-top: clamp(100px, 15vh, 160px);
+}
+
+.lede {
+  font-family: var(--sans);
+  font-weight: 200;
+  font-size: 1.6em;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 1em !important;
+}
+
+/* the Bridal fragment cluster, in the white space on the right,
+   running off the right edge */
+.cap--bridal {
+  right: 0;
+  top: clamp(330px, 42vh, 400px);
+  width: 215px;
+  overflow: hidden; /* the page edge cuts the lines, without widening the page */
+}
+
+.orphans--bridal {
+  left: calc(100% + 16vw);
+  top: clamp(190px, 26vh, 250px);
+}
+
+.slash {
+  list-style: none;
+  margin: 0.7em 0 1em;
+  padding: 0;
+}
+
+.slash li {
+  margin: 0.1em 0;
+}
+
+.slash li::before {
+  content: "/ ";
+  content: "/ " / "";
+}
+
+.slash .price {
+  font-weight: bold;
+  font-size: 1.22em;
+  margin-bottom: 0.3em;
+}
+
+.ask {
+  font-size: 0.9em;
+  margin-top: 1.2em !important;
+}
+
+/* THE PROCESS as a log */
+.log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 0.92em;
+  line-height: 1.45;
+}
+
+.log li {
+  margin: 0 0 1.25em;
+}
+
+.log .log-cmd {
+  margin: 0 !important;
+  font-weight: bold;
+}
+
+.log .log-out {
+  margin: 0.15em 0 0 3ch !important;
+}
+
+/* Countdown: Times bold, underlined in pink thread */
+.countdown {
+  font-family: var(--serif);
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown a {
+  text-decoration-color: var(--pink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.countdown--small {
+  font-size: 0.9em;
+  margin-top: 2.6em !important;
+}
+
+.countdown--big {
+  font-size: 1.7em;
+  line-height: 1.15;
+  margin: 0.1em 0 0.5em !important;
+}
+
+/* The one plain button */
+.btn {
+  display: inline-block;
+  padding: 0.45em 0.95em;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-family: var(--serif);
+  font-size: 0.95em;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.btn:visited {
+  color: var(--ink);
+}
+
+.btn:hover {
+  background: var(--pink-paper);
+  color: var(--ink);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* A fragment in the right-hand white space (desktop only) */
+.frag {
+  position: absolute;
+  left: calc(100% + 7vw);
+  top: 0.3em;
+  margin: 0 !important;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.redact {
+  background: var(--ink);
+  color: var(--ink);
+}
+
+/* Compass (FJL) */
+.compass {
+  margin-top: 3em;
+}
+
+/* --------------------------------------------------------------------------
+   Found images: the moodboard, taped to the page with a strip of pink
+   tape. script.js resolves them from coarse blocks to sharp.
+   -------------------------------------------------------------------------- */
+
+.found {
+  position: relative;
+  margin: 0;
+}
+
+.found-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--cw) / var(--ch);
+  mix-blend-mode: multiply;
+}
+
+.found-frame img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  width: calc(1412 / var(--cw) * 100%);
+  height: calc(2000 / var(--ch) * 100%);
+  left: calc(var(--cx) / var(--cw) * -100%);
+  top: calc(var(--cy) / var(--ch) * -100%);
+}
+
+.found-frame canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.found.px-armed img {
+  opacity: 0;
+}
+
+.found figcaption {
+  margin-top: 0.9em;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* a strip torn from the pink tape scan */
+.tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 120px;
+  height: 35px;
+  margin-left: -60px;
+  background: url("../../assets/bg-pink-tape-grid.jpg") -189px -77px / 424px auto no-repeat;
+  mix-blend-mode: multiply;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+
+.found--home {
+  position: absolute;
+  left: calc(100% + 7vw);
+  top: calc(18vh + 0.4em);
+  width: clamp(230px, 19vw, 285px);
+  transform: rotate(1.3deg);
+}
+
+.found--tile {
+  position: absolute;
+  left: calc(100% + 9vw);
+  top: 0.2em;
+  width: 200px;
+  transform: rotate(-1.8deg);
+}
+
+.found--tile .tape {
+  width: 96px;
+  margin-left: -48px;
+  transform: rotate(5deg);
+}
+
+/* Pins and pink thread, next to the form */
+.pins {
+  position: absolute;
+  left: calc(100% + 4vw);
+  top: 7em;
+  width: 420px;
+  height: 400px;
+  background: url("../../assets/bg-pins-thread.jpg") 0 100% / 420px auto no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+  /* the scan's edges cut the pins, so let them fade out instead */
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 55%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 55%, #000 55%, transparent 100%);
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Inquiry form as a typed letter
+   -------------------------------------------------------------------------- */
+
+.term-head {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--olive);
+  margin: 0 0 1.4em !important;
+  overflow-wrap: anywhere;
+}
+
+.terminal {
+  position: relative;
+  max-width: 44rem;
+  font-family: var(--mono);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.terminal label,
+.terminal legend {
+  text-transform: lowercase;
+}
+
+.terminal .keep-case {
+  text-transform: none;
+}
+
+.req-note {
+  font-size: 14px;
+  margin: 0 0 1.6em !important;
+}
+
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 1ch;
+  row-gap: 0.3em;
+  margin: 0 0 1.5em;
+}
+
+.field > label {
+  flex: 0 1 auto;
+}
+
+.field > input {
+  flex: 1 1 18ch;
+  min-width: 0;
+}
+
+.field--stack {
+  display: block;
+}
+
+fieldset.field {
+  display: block;
+  min-width: 0;
+  margin: 0 0 1.6em;
+  padding: 0;
+  border: 0;
+}
+
+.terminal legend {
+  float: none;
+  width: 100%;
+  margin: 0 0 0.35em;
+  padding: 0;
+}
+
+.group-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 3ch;
+  row-gap: 0.4em;
+  padding-left: 2ch;
+}
+
+.group-body--list {
+  display: block;
+}
+
+.terminal input[type="text"],
+.terminal input[type="email"],
+.terminal input[type="date"],
+.terminal textarea {
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 0.1em 0.2em;
+  -webkit-appearance: none;
+  appearance: none;
+  caret-color: var(--pink);
+}
+
+.terminal input[type="date"] {
+  min-width: 13ch;
+  min-height: 1.8em;
+}
+
+.terminal input:disabled {
+  opacity: 0.35;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.terminal textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.35em;
+  padding: 0 0.2em;
+  border-bottom: 0;
+  line-height: 1.6em;
+  min-height: calc(1.6em * 5);
+  resize: vertical;
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(1.6em - 1px),
+    rgba(17, 17, 17, 0.45) calc(1.6em - 1px),
+    rgba(17, 17, 17, 0.45) 1.6em
+  );
+  background-size: 100% 1.6em;
+  background-attachment: local;
+}
+
+.terminal ::placeholder {
+  color: #6b6b6b;
+  opacity: 1;
+}
+
+.terminal [aria-invalid="true"] {
+  border-bottom: 2px dashed var(--ink);
+}
+
+.terminal textarea[aria-invalid="true"] {
+  border-bottom: 0;
+  border-left: 3px solid var(--ink);
+}
+
+/* [ ] radios and checkbox: real inputs, visually restyled */
+.opt {
+  position: relative;
+  display: block;
+  width: fit-content;
+  padding: 0.15em 0;
+  text-transform: none !important;
+}
+
+.opt--inline {
+  display: inline-block;
+}
+
+.opt input {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3ch;
+  height: 1.2em;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.box {
+  white-space: pre;
+}
+
+.box::before {
+  content: "[ ]";
+  content: "[ ]" / "";
+}
+
+.opt input:checked + .box::before {
+  content: "[x]";
+  content: "[x]" / "";
+}
+
+.opt input:checked ~ .opt-text {
+  font-weight: bold;
+}
+
+.opt input:focus-visible + .box {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.opt:hover .opt-text {
+  text-decoration: underline;
+  text-decoration-color: var(--pink);
+}
+
+.err {
+  flex-basis: 100%;
+  margin: 0.2em 0 0 !important;
+  font-family: var(--mono);
+  font-weight: bold;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.err:empty {
+  display: none;
+}
+
+.err::before,
+.form-status::before {
+  content: "!! ";
+  content: "!! " / "";
+}
+
+legend .err {
+  display: block;
+}
+
+.form-status {
+  font-weight: bold;
+  margin: 0 0 1em !important;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.send {
+  font: inherit;
+  font-weight: bold;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 0.5em 1.3em;
+}
+
+.send:hover {
+  background: var(--pink-paper);
+  color: var(--ink);
+}
+
+.send:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.confirm {
+  font-family: var(--mono);
+}
+
+.confirm:focus {
+  outline: none;
+}
+
+.confirm:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 6px;
+}
+
+.confirm-text {
+  font-size: 1.6em;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+/* --------------------------------------------------------------------------
+   Footer and the giant cropped wordmark at the end of Bridal
+   -------------------------------------------------------------------------- */
+
+.site-foot {
+  padding: 4em var(--gutter) 3em;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.site-foot p {
+  margin: 0;
+}
+
+.site-foot .foot-noise {
+  margin-top: 0.9em;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--olive);
+}
+
+.endmark {
+  height: 0.6em;
+  margin-top: 6vh;
+  padding: 0 var(--gutter);
+  overflow: hidden;
+  font-family: var(--sans);
+  font-weight: 100;
+  font-size: 10.4vw; /* fallback; script.js fits it to the width */
+  line-height: 0.8;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.endmark span {
+  display: inline-block;
+  margin-left: -0.03em;
+}
+
+/* --------------------------------------------------------------------------
+   Mid widths: the right-hand white space is gone, so the found images
+   drop into the column and the side fragments step out
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1180px) {
+  .frag,
+  .orphans--bridal {
+    display: none;
+  }
+
+  .found--home {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(300px, 70%);
+    margin: 2.8em 0 1.2em 9%;
+  }
+
+  .found--tile {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(200px, 48%);
+    margin: 2.6em 7% 0.4em auto;
+  }
+
+  .pins {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 540px;
+    height: min(42vw, 300px);
+    margin: -1.2em 0 0 auto;
+    background-size: 100% auto;
+    background-position: 0 92%;
+    transform: rotate(-4deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Phone
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 800px) {
+  body {
+    font-size: 17px;
+  }
+
+  html {
+    scroll-padding-top: 56px;
+  }
+
+  .corners {
+    padding-top: 10px;
+    font-size: 14px;
+  }
+
+  .corner--center {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* the label hangs centred under the corners, a little larger */
+  .care-wrap {
+    top: 44px;
+    left: 50%;
+    width: 330px;
+    margin-left: -165px;
+    padding: 0 18px 48px;
+  }
+
+  .care {
+    width: 290px;
+    margin-top: -14px;
+    padding: 44px 24px 36px;
+    transform: rotate(-1.6deg);
+    transform-origin: 50% 0;
+    font-size: 11px;
+  }
+
+  .care::before {
+    inset: 32px 10px 17px;
+  }
+
+  .care-brand {
+    font-size: 12px;
+  }
+
+  .care-list {
+    font-size: 17px;
+    line-height: 2.05;
+  }
+
+  /* wordmark stacks: ODE / TO / SHELLY */
+  .wm-w {
+    display: block;
+  }
+
+  .wordmark {
+    font-size: 24vw;
+  }
+
+  .veil {
+    background-size: 520px auto;
+    background-position: right -80px bottom -30px;
+    opacity: 0.11;
+    -webkit-mask-image: radial-gradient(ellipse 120% 75% at 70% 90%, #000 30%, rgba(0, 0, 0, 0.5) 58%, transparent 82%);
+    mask-image: radial-gradient(ellipse 120% 75% at 70% 90%, #000 30%, rgba(0, 0, 0, 0.5) 58%, transparent 82%);
+  }
+
+  .cap {
+    font-size: 7.5px;
+  }
+
+  .cap--home {
+    top: 23%;
+  }
+
+  .orphans--home {
+    left: auto;
+    right: calc(var(--gutter) + 4vw);
+    top: 36%;
+  }
+
+  .o-ti {
+    font-size: 19px;
+  }
+
+  .n-slash {
+    left: 58%;
+    top: 12%;
+  }
+
+  .home-doc {
+    padding-top: 12vh;
+  }
+
+  .doc h1 {
+    font-size: 2.2em;
+  }
+
+  .doc h2 {
+    font-size: 1.3em;
+  }
+
+  .lede {
+    font-size: 1.4em;
+  }
+
+  .bridal-doc {
+    padding-top: 84px;
+  }
+
+  .cap--bridal {
+    width: 150px;
+    top: 96px;
+  }
+
+  hr {
+    margin: 2.2em 0;
+  }
+
+  .log .log-out {
+    margin-left: 2ch !important;
+  }
+
+  .countdown--big {
+    font-size: 1.35em;
+  }
+
+  .terminal {
+    font-size: 16px;
+  }
+
+  .field > input {
+    flex-basis: 100%;
+  }
+
+  .confirm-text {
+    font-size: 1.3em;
+  }
+
+  .toast {
+    bottom: 44px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion: no blinking, no drifting veil, no sliding label
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cursor,
+  .flicker,
+  .veil {
+    animation: none !important;
+  }
+
+  .care-drop,
+  .care-wrap {
+    transition: none;
+  }
+
+  .toast {
+    transition: none;
+    transform: none;
+  }
+
+  .btn:active,
+  .send:active {
+    transform: none;
+  }
+}

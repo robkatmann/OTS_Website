@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTS prototypes</title>
+<style>
+  :root { --ink: #111; --paper: #fff; --olive: #8a8600; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    padding: 32px;
+    min-height: 100vh;
+  }
+  h1 { font-weight: 200; font-size: 14px; letter-spacing: .08em; margin: 0 0 10vh; }
+  .round { font-family: "Courier New", Courier, monospace; font-weight: 400; font-size: 13px; margin: 0 0 14px; text-transform: lowercase; }
+  .round span { color: var(--olive); }
+  ol + .round { margin-top: 10vh; }
+  .old { opacity: .55; }
+  .name em { font-size: .5em; font-family: "Courier New", Courier, monospace; font-style: normal; color: var(--olive); vertical-align: super; }
+  h1 span { font-family: "Courier New", Courier, monospace; color: var(--olive); }
+  ol { list-style: none; margin: 0; padding: 0; max-width: 1100px; }
+  li {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    border-top: 1px solid var(--ink);
+    padding: 22px 0 36px;
+  }
+  li:last-child { border-bottom: 1px solid var(--ink); }
+  .n { font-family: "Times New Roman", Times, serif; font-size: 48px; line-height: 1; }
+  .name { font-family: "Times New Roman", Times, serif; font-size: 40px; line-height: 1.05; margin: 0 0 8px; }
+  .desc { max-width: 52ch; line-height: 1.5; margin: 0; }
+  .links { font-family: "Courier New", Courier, monospace; font-size: 14px; white-space: nowrap; }
+  .links a { color: var(--ink); display: block; margin-bottom: 6px; }
+  a:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+  footer { margin-top: 10vh; font-size: 12px; max-width: 60ch; line-height: 1.6; }
+  @media (max-width: 800px) {
+    body { padding: 16px; }
+    li { grid-template-columns: 1fr; gap: 10px; }
+    .name { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+  <h1>ODE TO SHELLY <span>/_</span> three directions, home + bridal</h1>
+  <h2 class="round">round 2 <span>/ simplified, with your images, custom cursor</span></h2>
+  <ol>
+    <li>
+      <span class="n">3</span>
+      <div>
+        <p class="name">Broken Browser <em>v2</em></p>
+        <p class="desc">The favourite, refined. A care-label menu instead of the endless list, sparse thread paper, pins, pink, and a found image that decrypts.</p>
+      </div>
+      <div class="links"><a href="v2/3-broken-browser/index.html">home &gt;&gt;</a><a href="v2/3-broken-browser/bridal.html">bridal &gt;&gt;</a></div>
+    </li>
+    <li>
+      <span class="n">1</span>
+      <div>
+        <p class="name">Torn Page <em>v2</em></p>
+        <p class="desc">Calmer, same fragment placement. A clipping taped to the page, pins holding the form, paper under everything.</p>
+      </div>
+      <div class="links"><a href="v2/1-torn-page/index.html">home &gt;&gt;</a><a href="v2/1-torn-page/bridal.html">bridal &gt;&gt;</a></div>
+    </li>
+    <li>
+      <span class="n">2</span>
+      <div>
+        <p class="name">Index <em>v2</em></p>
+        <p class="desc">The quiet magazine, now with real editorial images, tiny thumbnails in the contents, and a pearl pin cursor.</p>
+      </div>
+      <div class="links"><a href="v2/2-index/index.html">home &gt;&gt;</a><a href="v2/2-index/bridal.html">bridal &gt;&gt;</a></div>
+    </li>
+  </ol>
+  <h2 class="round">round 1 <span>/ for comparison</span></h2>
+  <ol class="old">
+    <li>
+      <span class="n">1</span>
+      <div>
+        <p class="name">Torn Page</p>
+        <p class="desc">The one-pager turned into a website. Fonts and sizes jump mid-sentence, captions bleed off the edge, stray numbers read like pattern codes.</p>
+      </div>
+      <div class="links"><a href="1-torn-page/index.html">home &gt;&gt;</a><a href="1-torn-page/bridal.html">bridal &gt;&gt;</a></div>
+    </li>
+    <li>
+      <span class="n">2</span>
+      <div>
+        <p class="name">Index</p>
+        <p class="desc">A quiet, expensive independent magazine. Contents pages, masthead, editors' letter. Information goes missing through redactions and gaps.</p>
+      </div>
+      <div class="links"><a href="2-index/index.html">home &gt;&gt;</a><a href="2-index/bridal.html">bridal &gt;&gt;</a></div>
+    </li>
+    <li>
+      <span class="n">3</span>
+      <div>
+        <p class="name">Broken Browser</p>
+        <p class="desc">A secret site you were lucky to find. Pre-internet pages, decrypting text, an endless menu, a countdown to 2027.</p>
+      </div>
+      <div class="links"><a href="3-broken-browser/index.html">home &gt;&gt;</a><a href="3-broken-browser/bridal.html">bridal &gt;&gt;</a></div>
+    </li>
+  </ol>
+  <footer>Throwaway prototypes for choosing a direction. Text in the bridal intro is placeholder. Collection, About and Contact are not built yet. Mix freely: "this from 1, that from 3" is a perfect answer.</footer>
+</body>
+</html>
