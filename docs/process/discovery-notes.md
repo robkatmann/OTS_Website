@@ -43,10 +43,10 @@ Running log of decisions made during Q&A. Feeds the design spec (`docs/design-sp
 - Kristin likes the **placement of the noise fragments in 1, Torn Page** (caption fragments bleeding off the left edge, "2027 / VEIL / 210", "36 / Silhoutte / 68", "/_", the half-cut olive "01", footer line).
 - Round 2: redo all three, **slightly simplified**, using the new images.
 - **Cursor:** custom and cryptic, like the pink shard shape the designers supplied, or similar but more bridal. Made: `prototypes/assets/cursor-shard.svg` (their shape) and `cursor-pin.svg` (pearl-headed sewing pin).
-- **New images** (originals in `docs/backgrounds/` and `docs/imagery/`, web versions in `prototypes/assets/`):
+- **New images** (originals in `docs/source-images/backgrounds/` and `docs/source-images/imagery/`, web versions in `prototypes/assets/`):
   - Backgrounds (10 scans): usable sitewide or per section, subtle, may be layered or modified.
   - Imagery (3): moodboard collage, tulle close-up, satin ribbon. Usable across pages at any size or format.
-- **Round 2 tweaks (2026-09-27):** sitewide background in Torn Page v2 and Broken Browser v2 swapped to the designers' sparser thread scan (`docs/backgrounds/backdrop11.webp`, web: `prototypes/assets/bg-threads-light.jpg`, opacity 0.7); the old `bg-threads.jpg` was too intense. Tulle veil over the Broken Browser wordmark removed: it looked better without it.
+- **Round 2 tweaks (2026-09-27):** sitewide background in Torn Page v2 and Broken Browser v2 swapped to the designers' sparser thread scan (`docs/source-images/backgrounds/backdrop11.webp`, web: `prototypes/assets/bg-threads-light.jpg`, opacity 0.7); the old `bg-threads.jpg` was too intense. Tulle veil over the Broken Browser wordmark removed: it looked better without it.
 - **Palette update:** pink enters as an accent through the images and cursor (`#f28ab9` from the shard; soft paper pink in the scans).
 
 ## Prototype round 2 feedback (2026-09-30)
@@ -57,7 +57,17 @@ Running log of decisions made during Q&A. Feeds the design spec (`docs/design-sp
 - **Cursor test (requested 2026-09-30):** one test page only, v3 home with the normal cursor inverted (white fill, black edges, "white wedding dress"): `prototypes/assets/cursor-white-arrow.svg` and `cursor-white-hand.svg`. The rest of v3 keeps default cursors until decided.
 - **Rule:** when a version is chosen as the base, take it as it is. Only add what the designers explicitly ask for; never carry over features from other rounds by assumption.
 - **New pages in v3:** Collection, About, Contact.
-- **New images** (`docs/imagery 2/`): two lace scans. `Scan 14.jpeg`: chartreuse and pale-yellow lace strips plus a white lace with a green-stained edge. `Scan 4.jpeg`: peach heart-shaped lace plus the same stained white lace. Use on a subpage (e.g. About), small, once, with a caption along the lines of: this lace is defected, and for us the defects are the most beautiful part.
+- **New images** (`docs/source-images/imagery/`): two lace scans. `Scan 14.jpeg`: chartreuse and pale-yellow lace strips plus a white lace with a green-stained edge. `Scan 4.jpeg`: peach heart-shaped lace plus the same stained white lace. Use on a subpage (e.g. About), small, once, with a caption along the lines of: this lace is defected, and for us the defects are the most beautiful part.
+
+## Prototype round 3 feedback (2026-09-30)
+
+- **Home: done for now** (texts to be checked later). The two additions (coordinates after COPENHAGEN, blinking `>>_` beside COLLECTION) were not liked: reverted to v1.
+- **Cursor: decided, standard browser cursor. Do not change it.** (White inverted cursor was tested on one page and rejected; test page removed.)
+- **About: total makeover** following the designers' mockup `docs/mockups/about-page-mockup.png`: layered horizontal lace strips across the top with the nav lying over them; no "Two GIRLS" headline in the mockup; intro text right, small defect lace left. Keep the current bottom text area (Shelly story, approach, masthead) but with more space between the text boxes. Lace strips prepared in `prototypes/assets/lace-strip-*.jpg`.
+- **Contact:** too similar to Home and Collection; needs its own design (trying: a typewritten letter).
+- **Collection:** remove the tulle and waistband (ribbon) photos; all six pieces now show `[fig. 0X missing]`.
+- **Follow-up (2026-09-30):** Contact date line in Helvetica ultra light; About: typewriter stamp removed, "Upcyclnig" corrected to "Upcycling" (the misspelling was not wanted here; "Silhoutte" on Home is untouched), nav in the same spot as on the other pages, floating over the lace, which runs behind it from the very top edge (yellow lace cut), on desktop and phone.
+- Round 1 prototypes moved by the designers into `prototypes/v1/`; links updated.
 
 ## Open
 

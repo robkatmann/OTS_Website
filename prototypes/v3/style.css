@@ -1149,61 +1149,79 @@ a {
 
 /* =============================================================
    ABOUT
-   The masthead page: one small lace picture, one typewritten
-   scrap that slipped and runs off the edge of the sheet.
+   Opens on a lace collage: three strips laid by hand across the
+   top of the sheet, with the nav lying on them (the designers'
+   mockup). Below: the masthead page, spread out so it breathes.
+   One small lace picture with its defect caption.
    ============================================================= */
 
-.sheet--about { padding-bottom: 13vw; }
+.sheet--about { padding-bottom: 15vw; }
 
-/* the scrap: rotated, cut by the page edge, printed twice */
-.stamp {
-  left: 79vw;
-  top: 3.6vw;
-  width: 22vw;
-  transform: rotate(-4.5deg);
-  transform-origin: 0 50%;
+/* the nav stays in the same spot as on every other page, but floats over
+   the sheet instead of pushing it down, so the lace runs behind it from the
+   very top edge. The collage is slid up (--lift): the yellow lace is cut */
+.page-about .masthead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
-.stamp img {
-  display: block;
+/* a soft paper halo behind the ink keeps the nav crisp on the lace */
+.page-about .masthead a {
+  text-shadow: 0 0 2px var(--paper), 0 0 4px var(--paper), 0 0 9px var(--paper);
+}
+
+/* the collage. One unit (--u) is 1vw on desktop, so the strips scale
+   with the page like a printed spread; phone enlarges and shifts it. */
+.lace-hero {
+  --u: 1vw;
+  --dx: 0px;
+  --lift: 16;
+  left: 0;
+  top: calc(var(--lift) * var(--u) * -1);
+  z-index: 0;
   width: 100%;
+  height: calc(50 * var(--u));
+  overflow: hidden;
+}
+.strip {
+  position: absolute;
+  display: block;
+  max-width: none;
   height: auto;
+  /* the scans sit on white paper: multiply lets the laces show through each other */
   mix-blend-mode: multiply;
 }
-.stamp-ghost {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: .2;
-  transform: translate(6px, -4px) rotate(.9deg);
+/* pale yellow, scallops down, bleeding off the top and left edges */
+.strip--yellow {
+  left: calc(var(--dx) - 3.7 * var(--u));
+  top: calc(-6.5 * var(--u));
+  width: calc(72 * var(--u));
+  transform: rotate(-.5deg);
 }
-.stamp-main {
-  position: relative;
-  /* a sliver sliced out, just before the second word */
-  -webkit-mask-image: linear-gradient(97deg, #000 43%, transparent 43%, transparent 44.6%, #000 44.6%);
-  mask-image: linear-gradient(97deg, #000 43%, transparent 43%, transparent 44.6%, #000 44.6%);
+/* wide white lace, its scalloped edge dyed green: the lower layer */
+.strip--defect {
+  left: calc(var(--dx) + 7.5 * var(--u));
+  top: calc(12.8 * var(--u));
+  width: calc(84 * var(--u));
+  transform: rotate(.4deg);
+}
+/* bright chartreuse, laid across the middle over the white lace, tilted */
+.strip--chartreuse {
+  left: calc(var(--dx) - 4 * var(--u));
+  top: calc(21 * var(--u));
+  width: calc(111 * var(--u));
+  transform: rotate(-.8deg) scaleY(.9);
 }
 
-.about-open { padding-top: 5vw; }
-
-.about-title {
-  margin-left: 6vw;
-  font-weight: 400;
-  line-height: .96;
-}
-.about-title .al1,
-.about-title .al2 { display: block; }
-.about-title .al2 { margin-left: 17vw; }
-.about-title .a1 { font: 100 7.6vw var(--sans); letter-spacing: -.03em; margin-right: .16em; }
-.about-title .a2 { font: 400 7.6vw var(--serif); text-transform: uppercase; }
-.about-title .a3 { font: italic 400 7.6vw var(--serif); }
-.about-title .a4 { font: 400 1.7vw var(--mono); margin: 0 .25em; }
-.about-title .a5 { font: 400 8.4vw var(--serif); letter-spacing: -.02em; }
+/* intro, directly under the green scallops: text in the right half,
+   the small lace picture lower left (placement from the mockup) */
+.about-open { padding-top: 31.8vw; }
 
 .about-intro {
   display: grid;
   grid-template-columns: 17vw 26vw 9vw 36vw;
   align-items: start;
-  margin-top: 5vw;
 }
 .intro-text { grid-column: 4; grid-row: 1; }
 .intro-text p { font-size: 1.12em; }
@@ -1221,45 +1239,39 @@ a {
 .lace img {
   display: block;
   flex: none;
-  width: 7.4vw;
-  min-width: 92px;
+  width: 6.8vw;
+  min-width: 88px;
   height: auto;
 }
 .lace figcaption { width: 13vw; min-width: 150px; padding-bottom: .2em; }
 .lace-cap { display: block; font: italic 400 15px/1.36 var(--serif); }
-.lace-code {
-  display: block;
-  margin-top: .9em;
-  font: 400 11px/1.3 var(--mono);
-  letter-spacing: .04em;
-  color: var(--olive);
-}
 
-.about-open .micro { left: 90vw; top: 31vw; }
+.about-open .micro { left: 90vw; top: calc(31.8vw + 36px); }
 
 /* the story of shelly */
-.shelly { margin-top: 8vw; }
-.shelly .col--l { width: 33vw; }
-.orphans--shelly { left: 46vw; top: 5vw; }
+.shelly { margin-top: 15vw; }
+.shelly .col--l { width: 30vw; }
+.orphans--shelly { left: 50vw; top: 6.4vw; }
 
 /* our approach: the lead-in starts far left and the text runs on in
    the right column, like "UPCYCLING, RETHINKING AND REPUR- POSING:"
    on page 5 of the one-pager */
-.making { margin-top: 7vw; }
-.jump { text-indent: -38vw; }
+.making { margin-top: 15vw; }
+.making .col--r { margin-left: 57vw; width: 33vw; }
+.jump { text-indent: -41vw; }
 .jump .lead {
   font: italic 400 .84em var(--serif);
   letter-spacing: .03em;
   text-transform: uppercase;
 }
-.cap--making { left: 0; top: calc(100% + 3vw); }
-.orphans--making { left: 21vw; top: 7vw; }
+.cap--making { left: 0; top: calc(100% + 5vw); }
+.orphans--making { left: 25vw; top: 10vw; }
 
 /* masthead credits: name, role underneath */
-.credits-block { margin: 10vw 0 0 52vw; width: 38vw; }
+.credits-block { margin: 18vw 0 0 44vw; width: 48vw; }
 .credits { margin: .4em 0 0; }
-.credit { margin-bottom: 2.4vw; }
-.credit + .credit { margin-left: 6vw; }
+.credit { margin-bottom: 4.6vw; }
+.credit + .credit { margin: 0 0 0 16vw; }
 .credits dt {
   font: 400 clamp(24px, 2.5vw, 40px)/1.1 var(--serif);
   letter-spacing: -.005em;
@@ -1271,47 +1283,43 @@ a {
   text-transform: uppercase;
 }
 .credits dd .sl { font-family: var(--mono); letter-spacing: 0; margin: 0 .2em; }
-.cap--credits { left: -30vw; top: calc(100% + 2vw); }
+.cap--credits { left: -30vw; top: calc(100% + 3vw); }
 
-.sheet--about .g-6 { left: 39vw; bottom: 24vw; }
+.sheet--about .g-6 { left: 30vw; bottom: 22vw; }
 .sheet--about .folio { left: 71vw; }
 
 @media (max-width: 800px) {
-  .stamp { left: 54vw; top: 2vw; width: 58vw; transform: rotate(-5deg); }
-  .stamp-ghost { transform: translate(4px, -3px) rotate(.9deg); }
 
-  .about-open { padding-top: 21vw; }
-  .about-title { margin-left: 0; }
-  .about-title .al2 { margin-left: 4vw; }
-  .about-title .a1,
-  .about-title .a2 { font-size: 13vw; }
-  .about-title .a3 { font-size: 11.5vw; }
-  .about-title .a4 { font-size: 3.4vw; }
-  .about-title .a5 { font-size: 13vw; }
+  /* the collage keeps its layering, a little larger than desktop
+     proportions so the lace still reads on a small screen */
+  .lace-hero { --u: 1.5vw; --dx: -9vw; }
 
-  .sheet--about .just { -webkit-hyphens: manual; hyphens: manual; }
-  .about-intro { display: block; margin-top: 10vw; }
+  .about-open { padding-top: 52vw; }
+  .about-intro { display: block; }
   .intro-text { margin-left: 8vw; }
   .intro-text p { font-size: 1.06em; }
-  .lace { margin: 12vw 0 0; gap: 4vw; }
-  .lace img { width: 24vw; min-width: 0; }
+  .lace { margin: 14vw 0 0; gap: 4vw; }
+  .lace img { width: 22vw; min-width: 0; }
   .lace figcaption { flex: 1; width: auto; min-width: 0; }
 
-  .shelly { margin-top: 16vw; }
+  .sheet--about .just { -webkit-hyphens: manual; hyphens: manual; }
+
+  .shelly { margin-top: 22vw; }
   .shelly .col--l { width: auto; }
-  .making { margin-top: 14vw; }
-  .making .col--r { margin-left: 8vw; }
+  .making { margin-top: 20vw; }
+  .making .col--r { margin-left: 8vw; width: auto; }
   .jump { text-indent: -8vw; }
   .cap--making {
     position: relative;
     left: auto;
     top: auto;
-    margin: 0 0 8vw calc(var(--gutter) * -1);
+    margin: 0 0 10vw calc(var(--gutter) * -1);
   }
 
-  .credits-block { margin: 16vw 0 0 4vw; width: auto; }
-  .credit { margin-bottom: 6vw; }
+  .credits-block { margin: 26vw 0 0 4vw; width: auto; }
+  .credit { margin-bottom: 8vw; }
   .credit + .credit { margin-left: 10vw; }
+
 
   .about-open .micro,
   .orphans--shelly,
@@ -1322,107 +1330,133 @@ a {
 
 /* =============================================================
    CONTACT
-   Very little on the page, and what is there is large.
+   A short letter typed on a typewriter and slipped into the
+   magazine: Courier throughout, one narrow left-aligned column,
+   generous margins, a couple of typed corrections. The letter is
+   the design; almost no noise around it.
    ============================================================= */
 
-.sheet--contact { padding-bottom: 12vw; }
+.sheet--contact { padding-bottom: 13vw; }
 
-.talk { padding-top: 5vw; }
-
-.talk-title {
-  margin-left: 6vw;
-  font-weight: 400;
-  line-height: .9;
+.letter {
+  position: relative;
+  width: min(100%, 54ch);
+  margin: 7.4vw 0 0 27vw;
+  font: 400 clamp(17px, 1.3vw, 21px)/1.62 var(--mono);
+  /* a little ink spread, like a ribbon pressed into paper */
+  text-shadow: 0 0 .5px rgba(17, 17, 17, .55);
 }
-.talk-title .l1 { font: italic 400 9.6vw var(--serif); letter-spacing: -.02em; }
-.talk-title .ap { margin-left: -.1em; }
-.talk-title .l2 { font: 100 9.6vw var(--sans); letter-spacing: -.04em; margin-left: .04em; }
-.talk-title .prompt { margin-left: 1.6vw; font-size: 15px; }
+/* one blank typed line between paragraphs */
+.letter > p + p,
+.letter > h1 + p { margin-top: 1.62em; }
 
-.talk-q {
-  margin: 2.6vw 0 0 52vw;
-  width: 29vw;
-  min-width: 260px;
-  font-size: 1.14em;
+.letter-date {
+  margin-bottom: 3.24em;
+  text-align: right;
+  /* the date is the one line not typed: Helvetica at its thinnest */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  letter-spacing: .02em;
 }
 
-/* information layer: the email is the largest thing on the page */
-.reach { margin: 5.4vw 0 0 21vw; }
-.reach a { text-decoration-thickness: 1px; text-underline-offset: .14em; }
-.reach a:hover { text-decoration-thickness: 2px; }
-.reach-mail a {
-  font: 400 clamp(30px, 5.2vw, 84px)/1.1 var(--serif);
-  letter-spacing: -.012em;
-}
-.reach-ig { margin: 1.8vw 0 0 13vw; }
-.reach-ig a { font: 400 clamp(22px, 2.3vw, 36px)/1.2 var(--serif); text-decoration: none; }
-.reach-ig .ig-h { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .14em; }
-.reach-ig a:hover .ig-h { text-decoration-thickness: 2px; }
-.reach-ig .ig-l {
-  margin-right: .6em;
-  font: 400 12px/1 var(--sans);
-  letter-spacing: .18em;
+/* the subject line: typed caps, underlined with the underscore key */
+.letter-re {
+  margin: 0 0 1.62em;
+  font: 400 1.18em/1.4 var(--mono);
+  letter-spacing: .1em;
   text-transform: uppercase;
-  vertical-align: .3em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+}
+.letter-re .re { letter-spacing: .04em; }
+
+/* typed corrections: the word overtyped with x's (monospace, so they
+   land exactly on the letters). Hidden from screen readers in the HTML. */
+.xout {
+  position: relative;
+  display: inline-block;
+  color: rgba(17, 17, 17, .6);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.xout::after {
+  content: attr(data-x);
+  position: absolute;
+  left: .05em;
+  top: -.03em;
+  color: var(--ink);
 }
 
-.for-bridal { margin: 4.6vw 0 0 52vw; }
-.fb-lead { font: italic 400 1.2em/1.3 var(--serif); }
-.cta--big {
-  margin-top: .5em;
-  gap: .6em;
-  font-size: clamp(16px, 1.5vw, 24px);
+/* information layer: the email, typed larger on a filled-in line */
+.letter > .letter-mail { margin-top: 1em; }
+.letter-mail a {
+  display: block;
+  padding: .12em 0 .16em;
+  font-size: 1.6em;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  box-shadow: inset 0 -1px 0 var(--ink);
+  overflow-wrap: anywhere;
 }
-.cta--big .arr { letter-spacing: 0; }
+.letter-mail a:hover { box-shadow: inset 0 -2px 0 var(--ink); }
 
-.studio { margin: 7vw 0 0 21vw; }
-.studio-l {
-  margin-right: 1.4em;
-  font: italic 400 15px/1.3 var(--serif);
+.letter > .letter-ig { margin-top: 1em; }
+.letter-ig a { text-underline-offset: .2em; }
+.letter-ig a:hover { text-decoration-thickness: 2px; }
+
+.letter > .letter-ps { margin-top: 2.4em; }
+.letter > .letter-cta { margin-top: .5em; }
+.letter-cta a {
+  display: inline-block;
+  padding: .3em 0;
+  font-weight: 700;
+  font-size: 1.14em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+}
+.letter-cta a:hover { text-decoration-thickness: 2px; }
+.letter-cta .arr { letter-spacing: 0; }
+
+/* sign-off: the signature jumps typeface, like the one-pager does */
+.letter > .letter-close { margin-top: 3.24em; }
+.letter > .letter-sign {
+  margin-top: .3em;
+  font: italic 400 1.9em/1.15 var(--serif);
+  text-shadow: none;
+}
+.letter-sign .amp { font-size: .8em; }
+.letter > .letter-from { margin-top: .3em; font-size: .86em; }
+
+.letter > .letter-cc {
+  position: relative;
+  margin-top: 4.2em;
+  font: 400 11px/1.3 var(--mono);
+  letter-spacing: .04em;
+  color: var(--olive);
+  text-shadow: none;
 }
 
-.cap--contact { left: 0; top: 44vw; }
-.cap--contact-r { left: 85vw; top: 13vw; }
-.orphans--contact { left: 79vw; top: 56vw; }
-.sheet--contact .g-7 { left: 12vw; top: 58vw; }
-.sheet--contact .folio { left: 38vw; }
+.sheet--contact .folio { left: 64vw; }
 
 @media (max-width: 800px) {
-  .sheet--contact { padding-bottom: 26vw; }
-  .talk { padding-top: 12vw; }
-  .talk-title { margin-left: 0; }
-  .talk-title .l1,
-  .talk-title .l2 { font-size: 19vw; }
-  .talk-title .prompt { margin-left: 2vw; font-size: 13px; }
-
-  .talk-q { margin: 8vw 0 0 12vw; width: auto; min-width: 0; font-size: 1.08em; }
-
-  .reach { margin: 13vw 0 0; }
-  .reach-mail a { font-size: 8.2vw; }
-  .reach-ig { margin: 4vw 0 0 8vw; }
-  .reach-ig a { font-size: 6.4vw; }
-
-  .for-bridal { margin: 13vw 0 0 0; }
-  .cta--big { font-size: 14px; letter-spacing: .1em; }
-
-  .studio { margin: 13vw 0 0 12vw; }
-  .studio .coords { display: block; margin-top: .5em; }
-
-  .cap--contact {
-    position: relative;
-    left: auto;
-    top: auto;
-    margin: 14vw 0 0 calc(var(--gutter) * -1);
+  .sheet--contact { padding-bottom: 28vw; }
+  .letter {
+    width: auto;
+    margin: 13vw 0 0;
+    font-size: 16px;
+    line-height: 1.6;
   }
-  .orphans--contact {
-    position: relative;
-    left: auto;
-    top: auto;
-    margin: 9vw 0 0 52vw;
-  }
-
-  .cap--contact-r,
-  .sheet--contact .g-7 { display: none; }
+  .letter-date { margin-bottom: 2.6em; }
+  .letter-re { font-size: 1.1em; }
+  .letter-mail a { font-size: min(1.5em, 6vw); }
+  .letter-cta a { font-size: 1.04em; letter-spacing: .04em; }
+  .letter > .letter-close { margin-top: 2.6em; }
+  .sheet--contact .folio { left: 52vw; }
 }
 
 /* =============================================================
