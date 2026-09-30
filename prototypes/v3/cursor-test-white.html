@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light">
+  <title>Cursor test / Ode to Shelly</title>
+  <meta name="description" content="Contemporary bridalwear for women who want something a little different. Made to order in Copenhagen.">
+  <link rel="stylesheet" href="style.css">
+  <!-- CURSOR TEST ONLY: the normal cursor, inverted (white with black edges).
+       Arrow everywhere, pointing hand on links; text cursor kept in fields;
+       touch devices have no cursor, so nothing changes there. -->
+  <style>
+    @media (hover: hover) {
+      html, body { cursor: url("../assets/cursor-white-arrow.svg") 2 2, auto; }
+      a, button, label, [role="button"], input[type="radio"], input[type="checkbox"], summary {
+        cursor: url("../assets/cursor-white-hand.svg") 8 2, pointer;
+      }
+      input[type="text"], input[type="email"], textarea { cursor: text; }
+    }
+    .cursor-test-note {
+      position: fixed; left: 16px; bottom: 12px; z-index: 90; margin: 0;
+      font: 12px/1.3 "Courier New", Courier, monospace; color: #8a8600;
+      background: #fff; padding: 2px 4px;
+    }
+  </style>
+</head>
+<body class="page-home">
+<p class="cursor-test-note">cursor test: white /_ (only this page)</p>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <a class="logo" href="index.html"><span class="w-ode">Ode</span> <span class="w-to">to</span> <span class="w-shelly">Shelly</span></a>
+    <nav aria-label="Main">
+      <ul class="menu" role="list">
+        <li><a href="bridal.html"><span class="sl" aria-hidden="true">/</span>Bridal</a></li>
+        <li><a href="collection.html"><span class="sl" aria-hidden="true">/</span>Collection</a></li>
+        <li><a href="about.html"><span class="sl" aria-hidden="true">/</span>About</a></li>
+        <li><a href="contact.html"><span class="sl" aria-hidden="true">/</span>Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="sheet sheet--home">
+
+    <!-- noise: the lone letter, stacked three times (page 1 of the one-pager) -->
+    <div class="noise s-stack" aria-hidden="true">
+      <span class="s s-sm">S</span>
+      <span class="s s-lg">S</span>
+      <span class="s s-lg">S</span>
+    </div>
+
+    <div class="noise micro" aria-hidden="true">
+      <span class="m1">OTS.</span>
+      <span class="m2">01 / kjole: 11 lag tyl</span>
+    </div>
+
+    <!-- information layer -->
+    <h1 class="wordmark">
+      <span class="w-ode mis">Ode</span> <span class="w-to">to</span> <span class="w-shelly mis">Shelly</span>
+    </h1>
+
+    <p class="tagline">
+      <span class="ti">Contemporary</span> <span class="tc">bridalwear</span> <span class="ai">&amp;</span> <span class="ti">beyond</span><span class="sr-only">,</span>
+      <span class="city">Copenhagen<span class="coords" aria-hidden="true">55.6761 N / 12.5683 E</span></span>
+    </p>
+
+    <p class="lede">
+      Contemporary <span class="r r-t">bridalwear</span> for women <span class="r r-a">who</span> want something <span class="r r-ti">a little different.</span>
+      Made to order <span class="r r-a">in</span> <span class="r r-ts">Copenhagen.</span>
+    </p>
+
+    <ul class="entry" role="list">
+      <li><a href="bridal.html">Bridal<span class="arr" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="collection.html">Collection<span class="arr" aria-hidden="true">&rarr;</span></a><span class="prompt" aria-hidden="true">&gt;&gt;<span class="caret">_</span></span></li>
+    </ul>
+
+    <!-- noise: caption fragments bleeding off the paper edge -->
+    <div class="noise cap cap--home" aria-hidden="true" data-drift="-7">
+      <span style="--cut: 132px">top by</span>
+      <span style="--cut: -46px"><b>Dress by Ode to Shelly,</b> veil found at a flea market in N&oslash;rrebro, lace from a 1970s tablecloth</span>
+      <span style="--cut: -18px"><b>Tablecloth</b> used as skirt. <span class="d">top by</span> her grandmother&rsquo;s</span>
+      <span style="--cut: -2px">07 KS</span>
+      <span></span>
+      <span style="--cut: -22px">Skirt cut from a curtain, studio Vesterbro</span>
+      <span style="--cut: -31px"><b>Fitting 03 of 04,</b> pinned at the waist</span>
+      <span style="--cut: -9px">buttons from a jar <b>at Amager</b> flea</span>
+      <span style="--cut: -40px">assistant <span class="d">nobody,</span> it was a sunday</span>
+    </div>
+
+    <div class="noise cap cap--home-r" aria-hidden="true" data-drift="9">
+      <span><b>Shot on a borrowed camera,</b> 06:40, Amager Strand, hem left raw on purpose, see also p.14</span>
+      <span style="--cut: 26px">sleeves unpicked twice</span>
+    </div>
+
+    <div class="noise cap cap--home-by" aria-hidden="true">
+      <span>torn from issue 01 <span class="d">by</span> Ode to Shelly <span style="margin-left: 15vw">p27</span></span>
+    </div>
+
+    <!-- noise: orphan numbers and words (pattern and garment codes) -->
+    <div class="noise orphans orphans--c orphans--home-a" aria-hidden="true">
+      <span class="o-ti" style="margin-left: 1.6vw">2027</span>
+      <span class="o-h">VEIL</span>
+      <span class="o-ts">210</span>
+    </div>
+
+    <div class="noise orphans orphans--l orphans--home-b" aria-hidden="true">
+      <span class="o-ho">36</span>
+      <span class="o-tl">Silhoutte</span>
+      <span class="o-c">68</span>
+    </div>
+
+    <span class="noise glyph glyph--o g-1" aria-hidden="true">&gt;&gt;</span>
+    <span class="noise glyph g-2" aria-hidden="true">/_</span>
+    <span class="noise folio" aria-hidden="true">01</span>
+  </main>
+
+  <footer class="colophon">
+    <a href="mailto:contact@odetoshelly.com">contact@odetoshelly.com</a>
+    <span class="sep" aria-hidden="true">/</span>
+    <a href="https://instagram.com/odetoshelly">instagram <span aria-hidden="true">&gt;&gt;</span></a>
+    <span class="sep" aria-hidden="true">/</span>
+    <span class="city">Copenhagen</span>
+  </footer>
+
+  <a class="proto-link" href="../index.html"><span aria-hidden="true">&lt;&lt; </span>all prototypes</a>
+
+  <script src="script.js"></script>
+</body>
+</html>

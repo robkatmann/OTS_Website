@@ -49,6 +49,16 @@ Running log of decisions made during Q&A. Feeds the design spec (`docs/design-sp
 - **Round 2 tweaks (2026-09-27):** sitewide background in Torn Page v2 and Broken Browser v2 swapped to the designers' sparser thread scan (`docs/backgrounds/backdrop11.webp`, web: `prototypes/assets/bg-threads-light.jpg`, opacity 0.7); the old `bg-threads.jpg` was too intense. Tulle veil over the Broken Browser wordmark removed: it looked better without it.
 - **Palette update:** pink enters as an accent through the images and cursor (`#f28ab9` from the shard; soft paper pink in the scans).
 
+## Prototype round 2 feedback (2026-09-30)
+
+- **Torn Page is "almost good to go": focus on that design** for v3 (base version to confirm: v1 or v2).
+- From Broken Browser, keep two details, used minimally: the olive Courier coordinates `55.6761 N / 12.5683 E` and the `>>` with the blinking/moving `_` (the animation was liked).
+- **No custom cursor.** v1 had none; the designers chose v1. Tried in round 2, not wanted.
+- **Cursor test (requested 2026-09-30):** one test page only, v3 home with the normal cursor inverted (white fill, black edges, "white wedding dress"): `prototypes/assets/cursor-white-arrow.svg` and `cursor-white-hand.svg`. The rest of v3 keeps default cursors until decided.
+- **Rule:** when a version is chosen as the base, take it as it is. Only add what the designers explicitly ask for; never carry over features from other rounds by assumption.
+- **New pages in v3:** Collection, About, Contact.
+- **New images** (`docs/imagery 2/`): two lace scans. `Scan 14.jpeg`: chartreuse and pale-yellow lace strips plus a white lace with a green-stained edge. `Scan 4.jpeg`: peach heart-shaped lace plus the same stained white lace. Use on a subpage (e.g. About), small, once, with a caption along the lines of: this lace is defected, and for us the defects are the most beautiful part.
+
 ## Open
 
 - Final About and Bridal intro texts (after prototypes)
