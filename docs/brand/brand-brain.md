@@ -45,7 +45,7 @@ Labels used below: **(said)** the designers said it directly · **(one-pager)** 
 
 - Stripped down, underground, anti-template. It should spark curiosity because it is **not too obvious**. (said)
 - Hyper-minimalist and brutalist: raw typography, zero decoration for its own sake, a lot of stark white space. (said)
-- A hint of a broken, pre-internet internet: signs like `>>` and `/_`, used sparingly. (said)
+- A hint of a broken, pre-internet internet: signs like `>>` and `/_`, used sparingly. Text that decrypts or "unravels" here and there is liked (Broken Browser, About v2). (said)
 - **Mysterious, but never messy or confusing.** This is the line they keep drawing. (said about their favourite prototype)
 - Calm beats chaos. When offered more noise, they chose the calmer version. (observed)
 
@@ -61,23 +61,32 @@ Labels used below: **(said)** the designers said it directly · **(one-pager)** 
 - **Times New Roman:** the editorial voice, italics, mid-sentence jumps. (said)
 - **Courier New:** typewriter moments, codes, the Contact letter. (said, observed)
 - **Font and size switch mid-sentence**, like their one-pager ("Changing the LANDSCAPE OF BRIDAL WEAR *by* pushing a..."). Big jumps in headlines, gentle ones in body text. (one-pager, observed)
+- **Big page titles mix Times and thin Helvetica at the same size**: "Contemporary / bridal", "Coll|ection", "RE / (us) / BLE". (said, observed)
 
 **Colour:**
 - Black ink on white paper. (said)
 - **Olive `#8a8600` and chartreuse `#c4c200`** as rare accents only: a caption fragment, a stray number. (said)
 - **Pink `#f28ab9`** exists as a tiny accent (e.g. a blinking underscore). Pink also arrives naturally through photos. (observed)
+- Red was tried for "RE" and "BLE" in a mockup and not kept: headings stay black, "similar like on other pages". (said, 2026-10-01)
 - The chartreuse lace in their scans matches the brand accent exactly. (observed)
 
 **Materials and imagery:**
 - Scans of real materials beat stock photos: lace (chartreuse, pale yellow, white with green-dyed edge, peach hearts), loose threads, pins with pink thread, tulle, satin ribbon, paper scraps, a typewritten "Ode to Shelly". (said, supplied)
 - Images should be **subtle, not evident**; backgrounds that are too intense get rejected. (said)
 - Imagery is sparse. Missing images can be part of the look: `[fig. 03 missing]`. (observed, liked)
+- **Typed images:** a photo can be remade from typed characters instead of showing the photo itself, e.g. the lace on About v2. Fits the pre-internet, encrypted feel. `tools/lace-to-text.py` converts any scan. (said, 2026-10-01; not yet decided if it replaces the photo version)
+  - It should stay close to the real photo (shapes, holes, colours), not become generic texture. (said)
+  - **The symbols are tiny, so at first it reads as a picture; zoom in and you discover it is emoticons, symbols, "copy paste stuff".** That discovery is the point. (said)
+  - Mixed sizes and colours per symbol; classic emoticons (`<3 xo ;) :*`) plus copy-paste symbols (♡ ✿ ❀ ✧). Real emojis are allowed too, whatever gets closest to the picture. (said)
+  - The photo itself should not be shown: the lace is redrawn with code. Ways explored: emoji mosaic, arithmetic signs, halftone dots, cross-stitch, typewriter overstrike, shapes and threads (`docs/explorations/lace/`). (said, 2026-10-01; no favourite yet)
 
 **Recurring motifs:** caption fragments bleeding off the left edge, orphan stacks like `2027 / VEIL / 210` and `36 / Silhoutte / 68` (the misspelling of "Silhoutte" is kept on purpose on Home), stacked giant letters, columns that jump left and right, a half-cut olive page number, `>>` and `/_`. (one-pager, observed, liked)
 
+**Across pages:** the main title steps to the right from page to page, like turning pages: Bridal at the left edge, Collection about 30% across, About about 60%, all at the same height under the menu. (said, 2026-10-01)
+
 ## 7. Voice and tone
 
-- Short, dry, a little poetic, slightly odd. Lowercase winks. (observed, liked)
+- Short, dry, a little poetic, slightly odd. Lowercase winks. Word play is welcome: RE(us)BLE = reusable, with "us" in the middle. (observed, liked)
 - Examples they liked: `send >>` · `received. we'll write back_` · *"defect, left edge. the dye ran. for us, the defects are the most beautiful part."* · *"Getting married in 2027? We'd love to hear from you."*
 - Playful nonsense is welcome as placeholder ("blahblahblah, blimblamblum", weather reports from space), but real texts come from the designers. (said)
 - Not salesy: no sale banners, no pushy asks (budget is not asked in the inquiry form). (said)

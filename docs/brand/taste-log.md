@@ -4,6 +4,30 @@ Every decision Karen and Kristin make about the look, feel and content, with the
 
 Format: `date · area · decision · why (if said)`
 
+## 2026-10-01 · The About lace, redrawn with code
+
+- About · **The lace should not be the photo**: generate it programmatically instead, in several versions to compare (pictures only, no new pages). Subject: the whole collage of three strips. Styles: real emojis, arithmetic, plus halftone dots, cross-stitch, typewriter overstrike, shapes and threads. Kept in `docs/explorations/lace/`.
+
+## 2026-10-01 · Pit stop: three About versions
+
+- About · **Keep three versions for now**, side by side under "about" on the start page: the first "Two girls." page (restored from the "version 3" save point), the lace photo collage, and the typed lace (latest). No decision yet on which one wins.
+
+## 2026-10-01 · About v2 round 3 (a step back)
+
+- About v2 · **"(us)" back to big Times**, as in the first round: they liked it. Round 2's thin Helvetica "(us)" replaced.
+- About v2 · **RE and BLE** above and below "(us)", **as big as "(us)"**, in the thin Helvetica of "bridal" and "ection" (font mix like the Collection title), **black**: "keep it black and similar like on other pages". The red from the mockup is not kept.
+- Titles · **The main title steps to the right from page to page**: Bridal at the left edge, Collection about 30% across, About about 60%, all at the same height · "like continuation of where the main title is located".
+- Typed images · **Tiny symbols, so the lace first reads as a picture; zoom in and you realise it is emojis, symbols, text, "copy paste stuff"**. The symbols may differ in size and colour. Copy-paste symbols (♡ ✿ ❀) or real emojis are both fine, "whatever gets closest to the actual picture"; started with copy-paste symbols mixed with the `<3 xo` emoticons, real emojis to try later.
+- About v2 · The unravelling effect is "good": keep it.
+
+## 2026-10-01 · About v2 (in progress)
+
+- About v2 · Typed lace "a good start" but must look **much closer to the actual photo**; free to play with sizes, colours, spacing, more characters and symbols. Now one character per "pixel", the scan's own colours, `<3 xo ;) :*` plus bold `<3` for the heaviest parts.
+- About v2 · **Unravelling effect** from Broken Browser v1 wanted "here and there": section titles decrypt on scroll; one row of lace at a time unravels and re-knits (lace characters only, so it shimmers rather than looks like an error).
+- About v2 · New mockup (`docs/source-images/imagery/Screenshot 2026-10-01 at 22.05.08.png`): **RE(us)BLE** ("reusable"), RE above and BLE below "(us)". "(us)" same size but in Helvetica (like the thin type on Bridal and Collection) instead of Times. RE and BLE in bold red as in the mockup (red is new to the palette: to confirm).
+- About · New mockup `docs/source-images/imagery/about page edit 2.png`: a big close-up of the white lace across the top, a translucent chartreuse band over it, "(us)" in large Times, defect caption at the left, intro below. Try it as a second version, keep the current About page too.
+- Imagery · **Idea: remake photos with typed characters instead of using the photo.** The lace rebuilt from keyboard symbols and classic text emoticons such as <3 (also xo, :*). Built as `prototypes/v3/about-v2.html` with `tools/lace-to-text.py`.
+
 ## 2026-09-30 · Round 3 (the chosen design)
 
 - About · The lace collage runs behind the menu from the very top edge; the menu stays in the same spot as on every other page · consistency across pages, lace still dominant.

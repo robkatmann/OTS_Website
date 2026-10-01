@@ -35,6 +35,9 @@ Also keep **this file** current: if the project structure, workflow or rules cha
 | Inspiration screenshots | `docs/references/` |
 | Earlier design rounds (history, do not edit) | `prototypes/v1/`, `prototypes/v2/`, `docs/process/` |
 | Start page linking all versions | `prototypes/index.html` |
+| Typed-image converter (scan to `<3 xo ✿ ♡` text art) | `tools/lace-to-text.py` (run with `--help`; About v2 uses `--mix`, exact settings in `about-v2.css`) |
+| The About lace redrawn with code, 6 styles, pictures only (emoji, arithmetic, halftone, cross-stitch, typewriter, threads) | `docs/explorations/lace/` (start with its `README.md` and `overview.jpg`), made with `tools/lace-render.py` (run with `--help`) |
+| About page: three versions kept side by side for now | `about-first.html` + `about-first.css` (the first "Two girls." page), `about.html` (lace photo collage, the one the menu links to), `about-v2.html` + `about-v2.css` + `about-v2.js` (typed lace, latest). Grouped under "about" on the start page. |
 
 It is plain HTML, CSS and a little JavaScript: no build step, no frameworks. A proper production setup (likely Astro, with texts in simple content files) is planned but not started.
 
@@ -53,6 +56,7 @@ It is plain HTML, CSS and a little JavaScript: no build step, no frameworks. A p
 - **Standard browser cursor.** Never add a custom cursor.
 - Desktop first, and the phone view (about 375 to 390 px wide) must work without sideways scrolling.
 - Keep the deliberate misspelling "Silhoutte" on Home. Real typos get fixed.
+- Page titles step to the right from page to page, at the same height: Bridal at the left edge, Collection 30% across, About 60%.
 - Accessibility: real text (not images of text), decorative noise marked `aria-hidden="true"`, visible keyboard focus.
 
 ## Saving work (git)

@@ -1,0 +1,143 @@
+/* =============================================================
+   ABOUT v2: the lace, retyped
+   Composition from the designers' mockup (docs/source-images/
+   imagery/about page edit 2.png): a big close-up of the white lace
+   across the top, a translucent chartreuse band over it, the
+   RE(us)BLE heading on it, the defect caption at the left, intro below.
+   The lace is not a photo: it is typed, tiny emoticons and copy-paste
+   symbols in many sizes and colours. From afar it reads as the photo;
+   zoomed in, it is clearly typed.
+   Loaded after style.css, only by about-v2.html.
+   ============================================================= */
+
+.page-about-v2 .sheet--about { padding-bottom: 15vw; }
+
+/* the typed lace: 320 characters across about 92vw, tiny on purpose: at
+   first it reads as the photo, zoomed in it is typed. Courier is 0.6em
+   wide, so 92vw / 320 / 0.6 = 0.479vw per character. Each pair of
+   characters is one <i>: an emoticon (<3, xo) or one copy-paste symbol,
+   in its own size (.z0 to .z8) and colour. A pair keeps its width
+   whatever the size, so the picture stays in line.
+   Regenerate with:
+   python3 tools/lace-to-text.py prototypes/assets/lace-strip-defect.jpg OUT.html
+     --single --cell-aspect 0.6 --cols 320 --crop 0 0 1000 600 --photo-colour
+     --clip-dark 0.35 --local 0.25 --radius 18 --detail-range 0.06
+     --contrast 0.75 --darken 0.74 --saturate 3.2 --rows --mix */
+.lace2 {
+  left: 9vw;
+  top: 4.2vw;
+  z-index: 0;
+}
+.lace-type {
+  --fs: .479vw;
+  margin: 0;
+  font: 400 var(--fs)/1 var(--mono);
+  letter-spacing: 0;
+  white-space: pre;
+}
+.lace-mix i {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(var(--fs) * 1.2);
+  height: var(--fs);
+  line-height: var(--fs);
+  vertical-align: top;
+  font-style: normal;
+}
+.lace-mix .b { font-weight: 700; }
+.lace-mix .z0 { font-size: calc(var(--fs) * .45); }
+.lace-mix .z1 { font-size: calc(var(--fs) * .55); }
+.lace-mix .z2 { font-size: calc(var(--fs) * .65); }
+.lace-mix .z3 { font-size: calc(var(--fs) * .75); }
+.lace-mix .z4 { font-size: calc(var(--fs) * .85); }
+.lace-mix .z5 { font-size: calc(var(--fs) * .95); }
+.lace-mix .z6 { font-size: calc(var(--fs) * 1.05); }
+.lace-mix .z7 { font-size: calc(var(--fs) * 1.2); }
+.lace-mix .z8 { font-size: calc(var(--fs) * 1.38); }
+
+/* the chartreuse band, laid over the lower lace like a strip of tape */
+.lace2-band {
+  position: absolute;
+  left: 4.5vw;
+  top: 30.5vw;
+  width: 70.5vw;
+  height: 9.6vw;
+  background: var(--chartreuse);
+  opacity: .42;
+  mix-blend-mode: multiply;
+}
+
+/* opener: the heading on the lace, caption at the left under it,
+   intro text below the lace */
+.about2-open {
+  position: relative;
+  z-index: 1;
+  padding-top: 64vw;
+}
+
+/* RE(us)BLE: "(us)" in big Times as in the first round; RE and BLE as big,
+   in the thin Helvetica of "bridal" and "ection", all black. The heading
+   steps on from the other pages: Bridal starts at the left edge,
+   Collection about 30% across, About about 60%. */
+.us {
+  position: absolute;
+  left: 60vw;  /* Bridal 0, Collection 30vw */
+  top: 8.3vw;  /* the same height as the Bridal and Collection titles */
+  margin: 0;
+}
+.us-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.us-word {
+  font: 400 8.4vw/.9 var(--serif);
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+.re,
+.ble {
+  font: 100 8.4vw/.9 var(--sans);
+  letter-spacing: -.035em;
+  color: var(--ink);
+  /* a soft paper edge keeps the hairline letters readable on the lace */
+  text-shadow: 0 0 .03em var(--paper), 0 0 .08em var(--paper);
+}
+
+.lace2-cap {
+  position: absolute;
+  left: calc(8vw - var(--gutter));
+  top: 62vw; /* just under the typed scallops, beside the intro */
+  width: 14vw;
+  min-width: 150px;
+  margin: 0;
+}
+
+.about2-intro {
+  margin-left: calc(35vw - var(--gutter));
+  width: 36vw;
+}
+
+.about2-micro { left: 91vw; top: 38vw; }
+
+/* the story below: a little more air before it, as the lace is bigger */
+.page-about-v2 .shelly { margin-top: 13vw; }
+
+@media (max-width: 800px) {
+  /* the typed lace keeps its proportions, a little wider than the
+     screen so it still bleeds off the right edge */
+  .lace2 { left: 2vw; top: 30vw; }
+  .lace-type { --fs: .551vw; }
+  .lace2-band { left: 5vw; top: 35vw; width: 82vw; height: 11vw; }
+
+  .about2-open { padding-top: 100vw; }
+  .us { left: 52vw; top: 32vw; }
+  .us-word,
+  .re,
+  .ble { font-size: 15vw; }
+  .lace2-cap { position: static; width: auto; margin: 0 0 10vw 22vw; }
+  .about2-intro { margin-left: 8vw; width: auto; }
+  .about2-micro { display: none; }
+  .page-about-v2 .shelly { margin-top: 22vw; }
+}
