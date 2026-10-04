@@ -6,6 +6,7 @@ Format: `date · area · decision · why (if said)`
 
 ## 2026-10-04 · New About, Collection with photos
 
+- Collection · **Picture 9: the bride and groom photo removed**; "the remaining white space can stay" (the corset scan and the two strips on that lookbook page stay).
 - About · **New About page from their own mockup** (`docs/source-images/imagery/Screenshot 2026-10-02 at 11.37.21.png`): a big "About / US" in the right half, "ut" and "US" in thin Helvetica; the intro under it; the left half empty except for a few stray marks (`//`, `>>_` with the pink underscore, `/`). No lace at the top and no defect-lace picture. Everything from "The story of Shelly" down stays as it was.
 - About · **"Abo" in the same font as "Coll" on Collection** (the big Times they see as bold), same size, and **the same misprint effect on mouse hover**. "ut" and "US" match "ection". Titles on all pages should look and behave alike.
 - About · **The earlier About versions are disregarded**: "Two girls.", the lace photo collage and the typed lace (with RE(us)BLE) were deleted from the site. They stay in save point `4f9c976`, "if needed we can take them back". The lace pictures in `docs/explorations/lace/` stay.
