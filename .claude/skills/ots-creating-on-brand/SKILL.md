@@ -24,6 +24,6 @@ Everything made for OTS should feel like it came from the same torn magazine pag
 - Two layers: the message itself is instantly clear; the texture around it can be broken.
 - Type: thin Helvetica, Times New Roman, Courier; mid-sentence font jumps.
 - Colour: black on white; olive or chartreuse as rare accents.
-- Real material scans (lace, threads, pins, paper) over stock imagery; subtle, never dominant.
+- Real material scans (lace, threads, pins, paper) over stock imagery; subtle, never dominant. Or the lace redrawn with code (emojis, stitches, dots: `docs/explorations/lace/`, skill `ots-redrawing-images-with-code`), e.g. as an Instagram image that rewards zooming in.
 - Voice: short, dry, a little poetic, lowercase winks; never salesy.
 - Check the "What they reject" section before presenting.

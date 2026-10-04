@@ -36,7 +36,7 @@ Also keep **this file** current: if the project structure, workflow or rules cha
 | Earlier design rounds (history, do not edit) | `prototypes/v1/`, `prototypes/v2/`, `docs/process/` |
 | Start page linking all versions | `prototypes/index.html` |
 | Typed-image converter (scan to `<3 xo ✿ ♡` text art) | `tools/lace-to-text.py` (run with `--help`; About v2 uses `--mix`, exact settings in `about-v2.css`) |
-| The About lace redrawn with code, 6 styles, pictures only (emoji, arithmetic, halftone, cross-stitch, typewriter, threads) | `docs/explorations/lace/` (start with its `README.md` and `overview.jpg`), made with `tools/lace-render.py` (run with `--help`) |
+| The About lace redrawn with code, 6 styles, pictures only (emoji, arithmetic, halftone, cross-stitch, typewriter, threads) | `docs/explorations/lace/` (start with its `README.md` and `overview.jpg`), made with `tools/lace-render.py` (run with `--help`); the overview sheet with `tools/lace-overview.py` |
 | About page: three versions kept side by side for now | `about-first.html` + `about-first.css` (the first "Two girls." page), `about.html` (lace photo collage, the one the menu links to), `about-v2.html` + `about-v2.css` + `about-v2.js` (typed lace, latest). Grouped under "about" on the start page. |
 
 It is plain HTML, CSS and a little JavaScript: no build step, no frameworks. A proper production setup (likely Astro, with texts in simple content files) is planned but not started.
@@ -46,6 +46,7 @@ It is plain HTML, CSS and a little JavaScript: no build step, no frameworks. A p
 - Use the `ots-changing-the-website` skill for any change.
 - Use the `ots-previewing-and-sharing` skill when someone wants to see the site, share it, or the preview is not working.
 - Use the `ots-creating-on-brand` skill for anything new outside the current pages (Instagram posts, texts, a shop, a new site).
+- Use the `ots-redrawing-images-with-code` skill for the lace pictures made of emojis, symbols, dots, stitches and so on (`docs/explorations/lace/`, the typed lace on About v2), or to redraw any other scan that way.
 
 ## Design rules that are already decided
 

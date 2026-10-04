@@ -20,6 +20,9 @@ Usage:
   --cols   how many marks across (more = finer, tinier marks)
   --width  width of the picture in SVG units (CSS pixels when shown 1:1)
   --png    also save OUT.png (twice the width), using Google Chrome if installed
+  --avoid  emojis to leave out of the emoji style, e.g. --avoid "🎾"
+  --extra  more emojis to use, just for this picture (measured on the fly), e.g. --extra "🌷🦋"
+  --finds  the emojis hidden here and there (instead of 💍 🎀 🕊️ 🥂 🧵 🪡), e.g. --finds "🌷💍"
 
   python3 tools/lace-render.py --measure "🌷🦋"
            measure new emojis (coverage and ink colour) to add to the EMOJI table
@@ -60,6 +63,7 @@ EMOJI = {
 EMOJI_FINDS = ["💍", "🎀", "🕊️", "🥂", "🧵", "🪡"]  # sprinkled now and then, found when zoomed in
 EMOJI_WHITE = ["🤍", "🩶", "🕊️", "🦢", "🫧", "☁️", "🪽", "🥚", "🐚", "🐑", "💍"]  # for the white lace
 EMOJI_COLOUR = [e for e in EMOJI if e not in EMOJI_WHITE and e not in ("🧵", "🪡")]
+AVOID = set()  # filled from --avoid
 
 # Helvetica Neue 300
 MATH_SIGNS = {"·": .009, "−": .021, "÷": .038, "+": .043, "=": .046, "×": .052, "≈": .057,
@@ -208,11 +212,12 @@ def emoji(img, W, H, cols, rng):
             want = -tone / tone.max() * peak * (1 + .45 * dl[y, x])
             grey = neutral(tone)
             white = (grey.max() - grey.min()) / grey.max() < .2
-            if rng.random() < .004:
-                choice, s = rng.choice(EMOJI_FINDS), .95
+            finds = [e for e in EMOJI_FINDS if e not in AVOID]
+            if finds and rng.random() < .004:
+                choice, s = rng.choice(finds), .95
             else:
                 scored = []
-                for e in (EMOJI_WHITE if white else EMOJI_COLOUR):
+                for e in (e for e in (EMOJI_WHITE if white else EMOJI_COLOUR) if e not in AVOID):
                     cov, col = EMOJI[e]
                     d = np.array(col) - PAPER
                     # share of the cell the emoji should cover, within the sizes allowed
@@ -465,10 +470,23 @@ def save_png(svg_path, W, H):
     print(f"wrote {png}")
 
 
+def split_emojis(text):
+    """'🌷🕊️💍' -> ['🌷', '🕊️', '💍'] (keeps variation selectors and joined emojis together)"""
+    out = []
+    for ch in text:
+        if ch.isspace():
+            continue
+        if out and (ch in "\ufe0f\u200d" or out[-1].endswith("\u200d")):
+            out[-1] += ch
+        else:
+            out.append(ch)
+    return list(dict.fromkeys(out))
+
+
 def measure(emojis):
-    """print table lines for new emojis, measured the same way as the EMOJI
+    """{emoji: (coverage, ink colour)}, measured the same way as the EMOJI
     table: each drawn at 80px in a 100px square, in Chrome"""
-    marks = list(dict.fromkeys(e for e in emojis if not e.isspace() and e not in "\ufe0f\u200d"))
+    marks = split_emojis(emojis)
     with tempfile.TemporaryDirectory() as tmp:
         cells = "".join(f"<div>{e}</div>" for e in marks)
         page = os.path.join(tmp, "m.html")
@@ -485,12 +503,14 @@ def measure(emojis):
         bmp = os.path.join(tmp, "m.bmp")
         subprocess.run(["sips", "-s", "format", "bmp", png, "--out", bmp], check=True, stdout=subprocess.DEVNULL)
         img = read_bmp(bmp)
+    found = {}
     for i, e in enumerate(marks):
         y, x = divmod(i, 10)
         c = img[y * 100:(y + 1) * 100, x * 100:(x + 1) * 100]
         ink = (255 - c).max(axis=2) > 12
         col = c[ink].mean(0) if ink.any() else PAPER
-        print(f'    "{e}": ({ink.mean():.3f}, ({int(col[0])}, {int(col[1])}, {int(col[2])})),')
+        found[e] = (round(float(ink.mean()), 3), tuple(int(v) for v in col))
+    return found
 
 
 if __name__ == "__main__":
@@ -499,16 +519,30 @@ if __name__ == "__main__":
     ap.add_argument("out", nargs="?")
     ap.add_argument("--style", choices=sorted(STYLES))
     ap.add_argument("--measure", metavar="EMOJIS", help="measure emojis for the EMOJI table, then stop")
+    ap.add_argument("--avoid", metavar="EMOJIS", default="", help='emojis to leave out, e.g. --avoid "🎾"')
+    ap.add_argument("--extra", metavar="EMOJIS", default="", help='more emojis, just for this picture, e.g. --extra "🌷"')
+    ap.add_argument("--finds", metavar="EMOJIS", help='emojis hidden here and there, e.g. --finds "🌷💍"')
     ap.add_argument("--cols", type=int, help="marks across (each style has its own default)")
     ap.add_argument("--width", type=int, default=1500, help="picture width in SVG units")
     ap.add_argument("--seed", type=int, default=1, help="change for a different random arrangement")
     ap.add_argument("--png", action="store_true", help="also save a PNG next to the SVG (needs Google Chrome)")
     a = ap.parse_args()
     if a.measure:
-        measure(a.measure)
+        for e, (cov, col) in measure(a.measure).items():
+            print(f'    "{e}": ({cov:.3f}, {col}),')
         raise SystemExit
     if not (a.image and a.out and a.style):
         ap.error("IMAGE, OUT and --style are needed (or --measure)")
+    if a.extra:
+        # measured now and used for this picture only: the tables (and so the
+        # existing pictures) stay as they are
+        for e, (cov, col) in measure(a.extra).items():
+            EMOJI[e] = (cov, col)
+            whiteish = max(col) - min(col) < 25
+            (EMOJI_WHITE if whiteish else EMOJI_COLOUR).append(e)
+    if a.finds is not None:
+        EMOJI_FINDS[:] = split_emojis(a.finds)
+    AVOID.update(e for e in EMOJI if e in a.avoid or e.rstrip("\ufe0f") in a.avoid)
     fn, default_cols = STYLES[a.style]
     iw, ih = image_size(a.image)
     W = a.width

@@ -12,6 +12,8 @@ Usage:
            height (0.58 0.59 shows the chartreuse, the white lace and the dyed edge)
 
 Reads FOLDER/<source> and every FOLDER/lace-*.png; writes FOLDER/overview.jpg.
+Titles and descriptions come from the table in FOLDER/README.md (the row that
+names lace-<name>.svg), so describe a new version there first.
 Needs Google Chrome; uses macOS's built-in `sips`.
 """
 import argparse
@@ -46,8 +48,24 @@ def sips(*args):
     subprocess.run(["sips", *args], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
-def label(path):
+def readme_labels(folder):
+    """{name: (title, text)} from the README table rows that name lace-<name>.svg"""
+    found = {}
+    path = os.path.join(folder, "README.md")
+    if not os.path.exists(path):
+        return found
+    for line in open(path, encoding="utf-8"):
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 3 and "lace-" in cells[1]:
+            name = cells[1].split("lace-", 1)[1].split(".svg", 1)[0]
+            found[name] = (cells[0].strip("*"), cells[2].replace("`", ""))
+    return found
+
+
+def label(path, readme):
     name = os.path.basename(path)[5:-4]  # lace-<name>.png
+    if name in readme:
+        return readme[name]
     style, _, variant = name.partition("-")
     title, text = LABELS.get(style, (name.replace("-", " ").capitalize(), ""))
     if variant:
@@ -67,7 +85,8 @@ def main():
                   key=lambda p: (order.index(os.path.basename(p)[5:-4].split("-")[0])
                                  if os.path.basename(p)[5:-4].split("-")[0] in order else 99, p))
     rows = [(os.path.join(a.folder, a.source), "The photo", "The original lace, for comparison.")]
-    rows += [(p, *label(p)) for p in pngs]
+    readme = readme_labels(a.folder)
+    rows += [(p, *label(p, readme)) for p in pngs]
 
     with tempfile.TemporaryDirectory() as tmp:
         items = []

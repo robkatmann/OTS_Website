@@ -31,4 +31,5 @@ The people asking are designers, not programmers. A change is only done when it 
 | Adding extras they didn't ask for (cursor, animation, colour) | Only what was asked; suggest extras, don't add them |
 | Checking only desktop | Always check phone width too |
 | Explaining in code terms | Plain words: "the space between the two text blocks is bigger now" |
-| Editing `prototypes/v1`, `v2` or `docs/source-images` | Only edit `prototypes/v3` and `prototypes/assets` |
+| Editing `prototypes/v1`, `v2` or `docs/source-images` | Only edit `prototypes/v3` and `prototypes/assets` (the lace pictures in `docs/explorations/lace`: see `ots-redrawing-images-with-code`) |
+| Retyping the About v2 lace by hand | It is generated: use `ots-redrawing-images-with-code` |

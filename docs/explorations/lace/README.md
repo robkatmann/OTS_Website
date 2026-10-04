@@ -29,5 +29,20 @@ python3 tools/lace-render.py docs/explorations/lace/source-collage.jpg docs/expl
 - `--cols 220`: more marks across, so they are finer and tinier (each style has its own default)
 - `--seed 2`: the same picture, arranged differently
 - `--png`: also save a PNG (needs Google Chrome)
+- `--avoid "🎾"`: leave these emojis out (emoji style)
+- `--extra "🌷"`: also use these emojis, wherever their colour fits (emoji style)
+- `--finds "🌷💍"`: the emojis hidden here and there (emoji style)
 
-It works with any scan, not only this lace.
+New versions are saved next to the old ones with an extra word, e.g. `lace-emoji-romantic.svg`, so you can compare. Add a row for each to the table above (the overview takes its titles and descriptions from it) and its command below, then rebuild the overview:
+
+```
+python3 tools/lace-overview.py docs/explorations/lace
+```
+
+It works with any scan, not only this lace (for example a single strip from `prototypes/assets/lace-strip-*.jpg`).
+
+## Commands for each version
+
+The six above use the command shown under "Making more", with only `--style` changed. Versions with extra settings:
+
+- (none yet)
