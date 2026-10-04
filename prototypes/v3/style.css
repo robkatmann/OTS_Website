@@ -967,8 +967,10 @@ a {
 
 /* =============================================================
    COLLECTION
-   A shopping page where most of the pictures went missing.
-   Pieces zig-zag between three columns; names jump typeface.
+   The August 2026 lookbook, all 20 pages in order, scattered down
+   the page (references: docs/source-images/collection page
+   reference/). Each piece's text stands against its photo's edge;
+   names jump typeface.
    ============================================================= */
 
 .sheet--coll { padding-bottom: 13vw; }
@@ -1005,44 +1007,42 @@ a {
 .cap--coll-r { left: 83vw; top: 15.4vw; }
 .cap--coll { left: 0; top: calc(100% + 5vw); }
 
-/* the pieces */
-.piece {
+/* the lookbook: each picture on its own line, placed by --x (left
+   edge), --w (width) and --y (space above), in vw, set in the HTML.
+   Pictures may run off the right edge, like the references. */
+.look {
+  display: block;
   position: relative;
-  width: 22vw;
+  width: calc(var(--w) * 1vw);
+  max-width: none;
+  height: auto;
+  margin: calc(var(--y, 8) * 1vw) 0 0 calc(var(--x) * 1vw);
+}
+.look img { display: block; width: 100%; height: auto; }
+
+/* several pictures side by side, sharing one height */
+.look--row { display: flex; gap: .5vw; }
+.look--row img { flex: var(--r) 1 0; width: 0; min-width: 0; }
+
+/* a piece: its text stands against the photo's edge, bottom-aligned,
+   to the right (piece--r) or to the left (piece--l) */
+.piece-text {
+  position: absolute;
+  bottom: 0;
+  width: 21vw;
   min-width: 230px;
 }
-.piece:nth-child(1) { margin-left: 60vw; margin-top: -4.6vw; }
-.piece:nth-child(2) { margin-left: 9vw;  margin-top: -5vw; }
-.piece:nth-child(3) { margin-left: 36vw; margin-top: -3vw; }
-.piece:nth-child(4) { margin-left: 67vw; margin-top: -6vw; }
-.piece:nth-child(5) { margin-left: 12vw; margin-top: -2vw; }
-.piece:nth-child(6) { margin-left: 45vw; margin-top: -7vw; }
+.piece--r .piece-text { left: calc(100% + 1.6vw); }
+.piece--l .piece-text { right: calc(100% + 1.6vw); }
+.piece-text .fig-note { margin: 0 0 1.2em; }
 
-.piece-fig { margin: 0 0 1.3em; }
-.piece-fig img {
-  display: block;
-  width: 9.4vw;
-  min-width: 108px;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-.piece:nth-child(1) .piece-fig img { object-position: 50% 22%; }
-.piece:nth-child(5) .piece-fig img { width: 8.2vw; min-width: 96px; object-position: 38% 58%; }
-.piece:nth-child(5) .piece-fig { margin-left: 5vw; }
-
-/* where the photo should be: a note in the gutter */
+/* the picture's number, a note in the gutter */
 .fig-note {
   margin-top: .8em;
   font: 400 11px/1.35 var(--mono);
   letter-spacing: .02em;
   color: var(--olive);
 }
-.fig-note--missing { margin: 0 0 1.5em; white-space: nowrap; }
-.piece:nth-child(2) .fig-note--missing { margin-left: -2.4em; }
-.piece:nth-child(3) .fig-note--missing { padding-top: 5.4vw; margin-left: 7em; }
-.piece:nth-child(4) .fig-note--missing { margin-left: 11em; }
-.piece:nth-child(6) .fig-note--missing { padding-top: 2.4vw; }
 
 .piece-name {
   margin-bottom: .45em;
@@ -1089,7 +1089,7 @@ a {
 .ask:hover { text-decoration-thickness: 2px; }
 
 .orphans--coll-a { left: calc(100% + 13vw); top: .6vw; }
-.orphans--coll-b { left: calc(100% + 27vw); top: 5vw; }
+.orphans--coll-b { left: calc(100% + 4vw); top: 5vw; }
 
 .webshop {
   margin: 8vw 0 0 64vw;
@@ -1099,12 +1099,6 @@ a {
 .cap--coll-v { left: 95vw; top: 64vw; }
 .sheet--coll .g-5 { left: 89vw; bottom: 20vw; }
 .sheet--coll .folio { left: 27vw; }
-
-@media (max-width: 1120px) and (min-width: 801px) {
-  .piece:nth-child(3) { margin-left: 34vw; }
-  .piece:nth-child(4) { margin-left: 66vw; }
-  .piece:nth-child(6) { margin-left: 42vw; }
-}
 
 @media (max-width: 800px) {
   .coll-open { padding-top: 10vw; }
@@ -1121,135 +1115,78 @@ a {
     margin: 12vw 0 0 calc(var(--gutter) * -1);
   }
 
-  .piece,
-  .piece:nth-child(n) { width: auto; min-width: 0; margin-top: 16vw; margin-left: 0; }
-  .piece:nth-child(1) { margin-top: 12vw; }
-  .piece:nth-child(2) { margin-left: 12vw; }
-  .piece:nth-child(3) { margin-left: 4vw; }
-  .piece:nth-child(4) { margin-left: 20vw; }
-  .piece:nth-child(6) { margin-left: 9vw; }
+  /* lookbook: one picture under the other, widths taking turns;
+     a piece's text sits under its photo */
+  .look { width: 100%; margin: 14vw 0 0; }
+  .lookbook > .look:nth-child(3n+2) { width: 76%; margin-left: 24%; }
+  .lookbook > .look:nth-child(3n) { width: 88%; }
+  .look--row { display: block; }
+  .look--row img { width: 100%; margin-top: 3vw; }
+  .look--row img:first-child { margin-top: 0; }
+  .piece-text,
+  .piece--r .piece-text,
+  .piece--l .piece-text { position: static; width: auto; min-width: 0; margin-top: 5vw; }
 
-  .piece-fig img,
-  .piece:nth-child(5) .piece-fig img { width: 40vw; min-width: 0; }
-  .piece:nth-child(5) .piece-fig { margin-left: 8vw; }
-  .piece:nth-child(2) .fig-note--missing { margin-left: 0; }
-  .piece:nth-child(3) .fig-note--missing { padding-top: 0; margin-left: 30vw; }
-  .piece:nth-child(4) .fig-note--missing { margin-left: 0; }
-  .piece:nth-child(6) .fig-note--missing { padding-top: 0; }
   .piece-name { font-size: 27px; }
 
-  .orphans--coll-b { left: auto; right: 0; top: 10vw; }
   .webshop { margin: 18vw 0 0 20vw; }
 
   .cap--coll-r,
   .cap--coll-v,
   .orphans--coll-a,
+  .orphans--coll-b,
   .sheet--coll .g-5 { display: none; }
 }
 
 /* =============================================================
    ABOUT
-   Opens on a lace collage: three strips laid by hand across the
-   top of the sheet, with the nav lying on them (the designers'
-   mockup). Below: the masthead page, spread out so it breathes.
-   One small lace picture with its defect caption.
+   The designers' mockup (docs/source-images/imagery/Screenshot
+   2026-10-02 at 11.37.21.png): a big "About / US" in the right
+   half, the intro under it, the left half left empty but for a
+   few stray marks. Below: the masthead page, spread out.
    ============================================================= */
 
 .sheet--about { padding-bottom: 15vw; }
 
-/* the nav stays in the same spot as on every other page, but floats over
-   the sheet instead of pushing it down, so the lace runs behind it from the
-   very top edge. The collage is slid up (--lift): the yellow lace is cut */
-.page-about .masthead {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-/* a soft paper halo behind the ink keeps the nav crisp on the lace */
-.page-about .masthead a {
-  text-shadow: 0 0 2px var(--paper), 0 0 4px var(--paper), 0 0 9px var(--paper);
-}
+/* title and intro share one left edge, about half-way across;
+   "About" is set exactly like "Collection" (same size, same misprint
+   on hover), its big letters at the same height as "Coll" */
+.about-open { padding-top: 9.2vw; }
 
-/* the collage. One unit (--u) is 1vw on desktop, so the strips scale
-   with the page like a printed spread; phone enlarges and shifts it. */
-.lace-hero {
-  --u: 1vw;
-  --dx: 0px;
-  --lift: 16;
-  left: 0;
-  top: calc(var(--lift) * var(--u) * -1);
-  z-index: 0;
-  width: 100%;
-  height: calc(50 * var(--u));
-  overflow: hidden;
+.about-title {
+  margin-left: 51vw;
+  font-weight: 400;
+  line-height: 1;
 }
-.strip {
-  position: absolute;
+.about-title .t1 {
+  font: 400 10vw/.86 var(--serif);
+  letter-spacing: -.015em;
+}
+.about-title .t2 {
+  font: 100 .9em/1 var(--sans);
+  letter-spacing: -.045em;
+}
+.about-title .t3 {
   display: block;
-  max-width: none;
-  height: auto;
-  /* the scans sit on white paper: multiply lets the laces show through each other */
-  mix-blend-mode: multiply;
-}
-/* pale yellow, scallops down, bleeding off the top and left edges */
-.strip--yellow {
-  left: calc(var(--dx) - 3.7 * var(--u));
-  top: calc(-6.5 * var(--u));
-  width: calc(72 * var(--u));
-  transform: rotate(-.5deg);
-}
-/* wide white lace, its scalloped edge dyed green: the lower layer */
-.strip--defect {
-  left: calc(var(--dx) + 7.5 * var(--u));
-  top: calc(12.8 * var(--u));
-  width: calc(84 * var(--u));
-  transform: rotate(.4deg);
-}
-/* bright chartreuse, laid across the middle over the white lace, tilted */
-.strip--chartreuse {
-  left: calc(var(--dx) - 4 * var(--u));
-  top: calc(21 * var(--u));
-  width: calc(111 * var(--u));
-  transform: rotate(-.8deg) scaleY(.9);
+  margin-top: .6vw;
+  font: 100 9vw/.86 var(--sans);
+  letter-spacing: -.045em;
+  text-transform: uppercase;
 }
 
-/* intro, directly under the green scallops: text in the right half,
-   the small lace picture lower left (placement from the mockup) */
-.about-open { padding-top: 31.8vw; }
-
-.about-intro {
-  display: grid;
-  grid-template-columns: 17vw 26vw 9vw 36vw;
-  align-items: start;
-}
-.intro-text { grid-column: 4; grid-row: 1; }
+.intro-text { margin: 2.9vw 0 0 51vw; width: 36vw; }
 .intro-text p { font-size: 1.12em; }
 .intro-text p + p { margin-top: .9em; }
 .nw { white-space: nowrap; }
 
-.lace {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  align-items: flex-end;
-  gap: 1.3vw;
-  margin: 6.4vw 0 0;
-}
-.lace img {
-  display: block;
-  flex: none;
-  width: 6.8vw;
-  min-width: 88px;
-  height: auto;
-}
-.lace figcaption { width: 13vw; min-width: 150px; padding-bottom: .2em; }
-.lace-cap { display: block; font: italic 400 15px/1.36 var(--serif); }
-
-.about-open .micro { left: 90vw; top: calc(31.8vw + 36px); }
+.about-open .micro { left: 88vw; top: calc(100% - 9.6vw); }
+.glyph--c { color: var(--chartreuse); }
+.about-open .g-7 { left: 24.8vw; bottom: 2.2vw; }
+.about-open .g-8 { left: 14.4vw; bottom: -2vw; color: #888; }
+.about-open .g-9 { left: 42.8vw; bottom: -9.7vw; }
 
 /* the story of shelly */
-.shelly { margin-top: 15vw; }
+.shelly { margin-top: 9.5vw; }
 .shelly .col--l { width: 30vw; }
 .orphans--shelly { left: 50vw; top: 6.4vw; }
 
@@ -1290,17 +1227,12 @@ a {
 
 @media (max-width: 800px) {
 
-  /* the collage keeps its layering, a little larger than desktop
-     proportions so the lace still reads on a small screen */
-  .lace-hero { --u: 1.5vw; --dx: -9vw; }
-
-  .about-open { padding-top: 52vw; }
-  .about-intro { display: block; }
-  .intro-text { margin-left: 8vw; }
+  .about-open { padding-top: 10vw; }
+  .about-title { margin-left: 30vw; }
+  .about-title .t1 { font-size: 18vw; }
+  .about-title .t3 { margin-top: 1.4vw; font-size: 16.2vw; }
+  .intro-text { margin: 12vw 0 0 8vw; width: auto; }
   .intro-text p { font-size: 1.06em; }
-  .lace { margin: 14vw 0 0; gap: 4vw; }
-  .lace img { width: 22vw; min-width: 0; }
-  .lace figcaption { flex: 1; width: auto; min-width: 0; }
 
   .sheet--about .just { -webkit-hyphens: manual; hyphens: manual; }
 
@@ -1322,6 +1254,9 @@ a {
 
 
   .about-open .micro,
+  .about-open .g-7,
+  .about-open .g-8,
+  .about-open .g-9,
   .orphans--shelly,
   .orphans--making,
   .cap--credits,

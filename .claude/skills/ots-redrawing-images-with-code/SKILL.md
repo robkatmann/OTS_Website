@@ -1,6 +1,6 @@
 ---
 name: ots-redrawing-images-with-code
-description: Use when anyone discusses, reviews or wants changes to the Ode to Shelly lace pictures made of emojis, symbols, arithmetic signs, dots, stitches, typewriter letters or threads (the typed lace on About v2 or the pictures in docs/explorations/lace), or wants another scan, strip or photo redrawn from characters or shapes, e.g. for Instagram.
+description: Use when anyone discusses, reviews or wants changes to the Ode to Shelly lace pictures made of emojis, symbols, arithmetic signs, dots, stitches, typewriter letters or threads (the typed lace of the old About v2 or the pictures in docs/explorations/lace), or wants another scan, strip or photo redrawn from characters or shapes, e.g. for Instagram.
 ---
 
 # Redrawing images with code (the lace pictures)
@@ -13,9 +13,9 @@ The designers want the lace drawn by code, not shown as a photo: tiny marks (emo
 |---|---|---|
 | Six pictures: emoji, math (arithmetic), halftone, stitch, typewriter, threads | `docs/explorations/lace/` (`README.md`, `overview.jpg`, `lace-<style>.svg/.png`) | `tools/lace-render.py` |
 | The comparison sheet | `docs/explorations/lace/overview.jpg` | `tools/lace-overview.py` |
-| Their source: the collage exactly as on the About page | `docs/explorations/lace/source-collage.jpg` | see Technical notes |
+| Their source: the collage exactly as on the old About page | `docs/explorations/lace/source-collage.jpg` | see Technical notes |
 | Single strips: the same scans as in the collage, straight (the collage tilts them); `img-lace-*.jpg` are older crops, not these | `prototypes/assets/lace-strip-{yellow,defect,chartreuse,peach}.jpg` | |
-| Typed lace on the About v2 page | the `<pre class="lace-type ...">` in `prototypes/v3/about-v2.html`; settings in the comment in `about-v2.css` | `tools/lace-to-text.py --mix` |
+| Typed lace of the old About v2 page (deleted 2026-10-04, About is now text only) | `prototypes/v3/about-v2.html` and `about-v2.css` in save point `4f9c976`: `git show 4f9c976:prototypes/v3/about-v2.css` | `tools/lace-to-text.py --mix` |
 
 **Names for the parts of the collage**, top to bottom: the pale **yellow lace** (top edge), the **white lace** (with the scallops at the bottom), the bright **chartreuse band** across the middle, and the **dyed edge** (the white lace's scallops, grey on the left, sea-green on the right). "The green part" can mean the chartreuse band or the dyed edge: look at the picture, and ask if still unsure.
 
@@ -44,7 +44,7 @@ python3 tools/lace-render.py docs/explorations/lace/source-collage.jpg docs/expl
 | Hide a few emojis here and there (about 1 in 250 marks) | `--finds "🌷💍"` replaces the usual hidden 💍 🎀 🕊️ 🥂 🧵 🪡 |
 | One strip only, or another scan | use that file as the image (crop first with `sips -c H W --cropOffset Y X in.jpg --out out.jpg`) |
 | Lighter or darker overall | `deepen=` in that style's `target(...)` call |
-| About v2 typed lace: more symbols, other sizes | `lace-to-text.py --symbols`, the `.z0` to `.z8` sizes and `--fs` in `about-v2.css`; rerun the command in the `about-v2.css` comment and swap the `<pre>` in `about-v2.html`. It is a site page: also use `ots-changing-the-website`. |
+| A typed lace like the old About v2: more symbols, other sizes | `lace-to-text.py --symbols`, the `.z0` to `.z8` sizes and `--fs` in `about-v2.css` (save point `4f9c976`); its comment holds the exact command. On a site page, also use `ots-changing-the-website`. |
 
 **Emojis that read romantic or bridal, by part** (all measured): white lace 🤍 🩶 🕊️ 🦢 🫧 ☁️ 🪽 🥚 🐚 💍; yellow lace ⭐ ✨ 💛 🌼; chartreuse band 🎾 (exact colour, sporty), 🍀 💚 🍏 (greener), 💛 🌼 (warmer); dyed edge 💚 🌿 🍃 🧩 🦚; pink only as tiny finds 🎀 🌸 🩷 💗 🌷 (pink stays small in this brand).
 
@@ -54,7 +54,7 @@ Prefer the options above to editing the tool: changing the lists in `lace-render
 
 - PNGs and `--measure` need Google Chrome (headless, with time limits). If one hangs, stop only processes whose command line contains `--headless`, by their number. Never close the person's own Chrome.
 - Emojis look slightly different on iPhone, Android and Windows; the PNGs show Apple's.
-- `source-collage.jpg` is the About page's `.lace-hero` (three strips, angles in `prototypes/v3/style.css`) without the menu, screenshotted at 1500 x 510 at double resolution. Rebuild it only if the collage on About changes.
+- `source-collage.jpg` is the old About page's `.lace-hero` (three strips, angles in `prototypes/v3/style.css` of save point `4f9c976`) without the menu, screenshotted at 1500 x 510 at double resolution. Rebuild it only if the collage on About changes.
 
 ## Common mistakes
 

@@ -1,6 +1,6 @@
 # The About lace, redrawn with code
 
-The lace collage from the About page, without the photo: each picture is drawn by code (`tools/lace-render.py`) from `source-collage.jpg`, the three lace strips exactly as they sit on the page. Pictures only, no pages. Start with `overview.jpg`, which shows all of them next to the photo, each with a zoomed-in detail.
+The lace collage from the old About page (replaced on 2026-10-04), without the photo: each picture is drawn by code (`tools/lace-render.py`) from `source-collage.jpg`, the three lace strips exactly as they sit on the page. Pictures only, no pages. Start with `overview.jpg`, which shows all of them next to the photo, each with a zoomed-in detail.
 
 | Style | Files | What it is |
 |---|---|---|

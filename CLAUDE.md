@@ -30,14 +30,15 @@ Also keep **this file** current: if the project structure, workflow or rules cha
 | **The live design (edit this)** | `prototypes/v3/`: `index.html` (Home), `bridal.html`, `collection.html`, `about.html`, `contact.html`, one shared `style.css` (the look), `script.js` (small effects and the form) |
 | Images used by the site | `prototypes/assets/` (web-sized) |
 | Original images from the designers | `docs/source-images/` (never edit; make web copies in `prototypes/assets/`) |
+| Collection pictures | `prototypes/assets/lookbook/lookbook-01.jpg` to `-20.jpg`: the 20 pages of `docs/source-images/collection page pictures/OTS_Lookbook_August_2026.pdf`, one picture per page, trimmed to the photos, 2000 px wide (rendered with PyMuPDF in a scratch virtual environment). Placement per picture is in `collection.html` (`--x`, `--w`, `--y`). |
 | Designer mockups | `docs/mockups/` |
 | Their original brief and one-pager | `docs/brief/` |
 | Inspiration screenshots | `docs/references/` |
 | Earlier design rounds (history, do not edit) | `prototypes/v1/`, `prototypes/v2/`, `docs/process/` |
 | Start page linking all versions | `prototypes/index.html` |
-| Typed-image converter (scan to `<3 xo ✿ ♡` text art) | `tools/lace-to-text.py` (run with `--help`; About v2 uses `--mix`, exact settings in `about-v2.css`) |
-| The About lace redrawn with code, 6 styles, pictures only (emoji, arithmetic, halftone, cross-stitch, typewriter, threads) | `docs/explorations/lace/` (start with its `README.md` and `overview.jpg`), made with `tools/lace-render.py` (run with `--help`); the overview sheet with `tools/lace-overview.py` |
-| About page: three versions kept side by side for now | `about-first.html` + `about-first.css` (the first "Two girls." page), `about.html` (lace photo collage, the one the menu links to), `about-v2.html` + `about-v2.css` + `about-v2.js` (typed lace, latest). Grouped under "about" on the start page. |
+| Typed-image converter (scan to `<3 xo ✿ ♡` text art) | `tools/lace-to-text.py` (run with `--help`; the typed lace of the old About v2 used `--mix`, exact settings in `about-v2.css` in save point `4f9c976`) |
+| The old About lace collage redrawn with code, 6 styles, pictures only (emoji, arithmetic, halftone, cross-stitch, typewriter, threads) | `docs/explorations/lace/` (start with its `README.md` and `overview.jpg`), made with `tools/lace-render.py` (run with `--help`); the overview sheet with `tools/lace-overview.py` |
+| About page | `about.html`: the big "About / US" from the designers' mockup (`docs/source-images/imagery/Screenshot 2026-10-02 at 11.37.21.png`). The three earlier versions ("Two girls.", lace photo collage, typed lace) were deleted on 2026-10-04; they live in save point `4f9c976` (`git show 4f9c976:prototypes/v3/about-v2.html`). |
 
 It is plain HTML, CSS and a little JavaScript: no build step, no frameworks. A proper production setup (likely Astro, with texts in simple content files) is planned but not started.
 
@@ -56,7 +57,7 @@ Before any change or addition, think critically about the cheapest way to get it
 - Use the `ots-changing-the-website` skill for any change.
 - Use the `ots-previewing-and-sharing` skill when someone wants to see the site, share it, or the preview is not working.
 - Use the `ots-creating-on-brand` skill for anything new outside the current pages (Instagram posts, texts, a shop, a new site).
-- Use the `ots-redrawing-images-with-code` skill for the lace pictures made of emojis, symbols, dots, stitches and so on (`docs/explorations/lace/`, the typed lace on About v2), or to redraw any other scan that way.
+- Use the `ots-redrawing-images-with-code` skill for the lace pictures made of emojis, symbols, dots, stitches and so on (`docs/explorations/lace/`, the typed lace of the old About v2), or to redraw any other scan that way.
 
 ## Design rules that are already decided
 
@@ -67,7 +68,7 @@ Before any change or addition, think critically about the cheapest way to get it
 - **Standard browser cursor.** Never add a custom cursor.
 - Desktop first, and the phone view (about 375 to 390 px wide) must work without sideways scrolling.
 - Keep the deliberate misspelling "Silhoutte" on Home. Real typos get fixed.
-- Page titles step to the right from page to page, at the same height: Bridal at the left edge, Collection 30% across, About 60%.
+- Page titles step to the right from page to page, at the same height: Bridal at the left edge, Collection 30% across, About about half-way (51%).
 - Accessibility: real text (not images of text), decorative noise marked `aria-hidden="true"`, visible keyboard focus.
 
 ## Saving work (git)

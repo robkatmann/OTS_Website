@@ -4,6 +4,16 @@ Every decision Karen and Kristin make about the look, feel and content, with the
 
 Format: `date · area · decision · why (if said)`
 
+## 2026-10-04 · New About, Collection with photos
+
+- About · **New About page from their own mockup** (`docs/source-images/imagery/Screenshot 2026-10-02 at 11.37.21.png`): a big "About / US" in the right half, "ut" and "US" in thin Helvetica; the intro under it; the left half empty except for a few stray marks (`//`, `>>_` with the pink underscore, `/`). No lace at the top and no defect-lace picture. Everything from "The story of Shelly" down stays as it was.
+- About · **"Abo" in the same font as "Coll" on Collection** (the big Times they see as bold), same size, and **the same misprint effect on mouse hover**. "ut" and "US" match "ection". Titles on all pages should look and behave alike.
+- About · **The earlier About versions are disregarded**: "Two girls.", the lace photo collage and the typed lace (with RE(us)BLE) were deleted from the site. They stay in save point `4f9c976`, "if needed we can take them back". The lace pictures in `docs/explorations/lace/` stay.
+- Titles · In their mockup the About title starts about half-way across (51%), not at 60% as decided on 2026-10-01. Built as in the mockup.
+- Collection · **Real photos from the August 2026 lookbook** (`docs/source-images/collection page pictures/`): **use all of them, in the same order as in the PDF**: the 20 pages, each page (a collage of photos) is one picture. Web copies: `prototypes/assets/lookbook/lookbook-01.jpg` to `-20.jpg`. Placed like their reference screenshots (`docs/source-images/collection page reference/`: scattered pictures of different sizes, many against the right edge, lots of white in between, sometimes a row of three or a full-width strip).
+- Collection · The text should be **more spread out**: now it sits too much on top of or right next to each other.
+- Collection · **The text has to be merged with the imagery.** Chosen way (option A): each piece's text (name, price, "ask about this") stands right against the edge of its photo, like a caption touching it, and the pieces are spread down the whole page between the pictures. Prices stay black and readable.
+
 ## 2026-10-01 · The About lace, redrawn with code
 
 - About · **The lace should not be the photo**: generate it programmatically instead, in several versions to compare (pictures only, no new pages). Subject: the whole collage of three strips. Styles: real emojis, arithmetic, plus halftone dots, cross-stitch, typewriter overstrike, shapes and threads. Kept in `docs/explorations/lace/`.

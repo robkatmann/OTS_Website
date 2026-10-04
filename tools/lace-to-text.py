@@ -25,7 +25,8 @@ Usage:
   --mix          typed in pairs of characters: each pair is an emoticon (<3, xo)
                  or one copy-paste symbol (♡ ✿ ❀ ✧), in patches, with sizes and
                  colours that vary, so a zoom shows it is typed (About v2).
-                 Use with --single; needs the .lace-type styles in about-v2.css.
+                 Use with --single; needs the .lace-type styles in about-v2.css
+                 (deleted; in git save point 4f9c976).
 """
 import argparse
 import math

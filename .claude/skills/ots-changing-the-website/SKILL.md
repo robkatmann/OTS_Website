@@ -34,4 +34,4 @@ The people asking are designers, not programmers. A change is only done when it 
 | Rewriting a whole page or stylesheet for a small change | Edit the few lines involved; iterate on the isolated piece, then integrate |
 | Explaining in code terms | Plain words: "the space between the two text blocks is bigger now" |
 | Editing `prototypes/v1`, `v2` or `docs/source-images` | Only edit `prototypes/v3` and `prototypes/assets` (the lace pictures in `docs/explorations/lace`: see `ots-redrawing-images-with-code`) |
-| Retyping the About v2 lace by hand | It is generated: use `ots-redrawing-images-with-code` |
+| Retyping a typed lace by hand | It is generated: use `ots-redrawing-images-with-code` |

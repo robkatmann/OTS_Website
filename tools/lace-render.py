@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-lace-render: redraw a scan (e.g. the lace collage of the About page) with
+lace-render: redraw a scan (e.g. the lace collage of the old About page) with
 code instead of showing the photo. The result is an SVG picture that stays
 sharp however far you zoom in, so tiny marks can read as "a photo" from afar
 and reveal what they are up close.
