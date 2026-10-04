@@ -27,14 +27,14 @@ Also keep **this file** current: if the project structure, workflow or rules cha
 
 | What | Where |
 |---|---|
-| **The live design (edit this)** | `prototypes/v3/`: `index.html` (Home), `bridal.html`, `collection.html`, `about.html`, `contact.html`, one shared `style.css` (the look), `script.js` (small effects and the form) |
-| Images used by the site | `prototypes/assets/` (web-sized) |
-| Original images from the designers | `docs/source-images/` (never edit; make web copies in `prototypes/assets/`) |
-| Collection pictures | `prototypes/assets/lookbook/lookbook-01.jpg` to `-20.jpg`: the 20 pages of `docs/source-images/collection page pictures/OTS_Lookbook_August_2026.pdf`, one picture per page, trimmed to the photos, 2000 px wide (rendered with PyMuPDF in a scratch virtual environment). Placement per picture is in `collection.html` (`--x`, `--w`, `--y`). |
+| **The website (edit this; this folder is what gets published)** | `site/`: `index.html` (Home), `bridal.html`, `collection.html`, `about.html`, `contact.html`, one shared `style.css` (the look), `script.js` (small effects and the form) |
+| Images used by the site | `site/assets/` (web-sized; only what the site shows). `prototypes/assets/` belongs to the earlier rounds and the lace work |
+| Original images from the designers | `docs/source-images/` (never edit; make web copies in `site/assets/`) |
+| Collection pictures | `site/assets/lookbook/lookbook-01.jpg` to `-20.jpg`: the 20 pages of `docs/source-images/collection page pictures/OTS_Lookbook_August_2026.pdf`, one picture per page, trimmed to the photos, 2000 px wide (rendered with PyMuPDF in a scratch virtual environment). Placement per picture is in `collection.html` (`--x`, `--w`, `--y`). |
 | Designer mockups | `docs/mockups/` |
 | Their original brief and one-pager | `docs/brief/` |
 | Inspiration screenshots | `docs/references/` |
-| Earlier design rounds (history, do not edit) | `prototypes/v1/`, `prototypes/v2/`, `docs/process/` |
+| Earlier design rounds (history, do not edit) | `prototypes/v1/`, `prototypes/v2/`, `docs/process/`. Round 3 ("v3") became `site/` on 2026-10-04 |
 | Start page linking all versions | `prototypes/index.html` |
 | Typed-image converter (scan to `<3 xo ✿ ♡` text art) | `tools/lace-to-text.py` (run with `--help`; the typed lace of the old About v2 used `--mix`, exact settings in `about-v2.css` in save point `4f9c976`) |
 | The old About lace collage redrawn with code, 6 styles, pictures only (emoji, arithmetic, halftone, cross-stitch, typewriter, threads) | `docs/explorations/lace/` (start with its `README.md` and `overview.jpg`), made with `tools/lace-render.py` (run with `--help`); the overview sheet with `tools/lace-overview.py` |

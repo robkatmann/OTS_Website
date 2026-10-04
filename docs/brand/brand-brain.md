@@ -36,7 +36,7 @@ Labels used below: **(said)** the designers said it directly · **(one-pager)** 
 - **Semi-custom:** an existing OTS design, adapted. (said)
 - **The Collection:** build a look from existing OTS pieces. Later a ready-to-wear web shop. (said)
 - **Process:** 01 Get in touch, 02 Meet (Copenhagen studio), 03 Create, 04 Wear. (said)
-- Contact: contact@odetoshelly.com, Instagram @odetoshelly. Domain odetoshelly.com (Squarespace; email works). (said)
+- Contact: contact@odetoshelly.com, Instagram @odetoshelly. Domain odetoshelly.com was registered through Squarespace and **has expired** (said, 2026-10-04): a domain for the launch is still to be chosen, and the contact@ email depends on it. (said)
 - Current bridal season focus: weddings in 2027. (said)
 
 ## 5. The aesthetic

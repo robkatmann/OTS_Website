@@ -7,15 +7,15 @@ description: Use when someone wants to see or test the Ode to Shelly website, vi
 
 ## Preview on this computer
 
-Start a small local web server from the `prototypes` folder (keep it running in its own terminal tab):
+Start a small local web server from the repository folder (keep it running in its own terminal tab). In the Claude desktop app, `.claude/launch.json` (`ots-prototypes`) does the same:
 
 ```bash
-cd prototypes && python3 -m http.server 8765
+python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Then open http://127.0.0.1:8765 (start page with all versions) or http://127.0.0.1:8765/v3/index.html (the current site). Prefer running it in a visible terminal tab the person can see, and tell them: closing that tab stops the preview.
+Then open http://127.0.0.1:8765/site/ (the website) or http://127.0.0.1:8765/prototypes/ (earlier design rounds). Prefer running it in a visible terminal tab the person can see, and tell them: closing that tab stops the preview.
 
-Opening `prototypes/v3/index.html` by double-click also works, but a few effects behave better with the server.
+Opening `site/index.html` by double-click also works, but a few effects behave better with the server.
 
 When checking a change, look at the changed part (and its phone view) rather than every page, unless the change affects all pages.
 
@@ -29,7 +29,7 @@ When checking a change, look at the changed part (and its phone view) rather tha
 
 ## See it on a phone
 
-On the same Wi-Fi, find the computer's address with `ipconfig getifaddr en0` and open `http://<that address>:8765` on the phone. Only works while the server runs.
+On the same Wi-Fi, find the computer's address with `ipconfig getifaddr en0` and open `http://<that address>:8765/site/` on the phone (the server must then be started without `--bind 127.0.0.1`). Only works while the server runs.
 
 ## Share with someone else
 

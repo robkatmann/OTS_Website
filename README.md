@@ -4,7 +4,7 @@ Hi Karen and Kristin. This folder holds your website, your images and your brand
 
 ## See the website
 
-- Easiest: open the folder `prototypes`, double-click `index.html`. The current site is **round 3** at the top.
+- Easiest: open the folder `site`, double-click `index.html`. Earlier design rounds: `prototypes/index.html`.
 - Or ask Claude: *"show me the website"*. Claude starts a preview and gives you a link.
 
 ## Change something with Claude
@@ -22,16 +22,16 @@ Claude will ask questions when something is open to interpretation, suggest idea
 
 ## Change something yourself
 
-- **Words:** in `prototypes/v3/` (`index.html` is Home, then `bridal.html`, `collection.html`, `about.html`, `contact.html`). Change the text, save, refresh the browser with Cmd + Shift + R.
-- **Look** (sizes, spacing, colours): `prototypes/v3/style.css`. Easier to ask Claude.
+- **Words:** in `site/` (`index.html` is Home, then `bridal.html`, `collection.html`, `about.html`, `contact.html`). Change the text, save, refresh the browser with Cmd + Shift + R.
+- **Look** (sizes, spacing, colours): `site/style.css`. Easier to ask Claude.
 - Keep tags like `<span ...>` and `</span>` in pairs. If something breaks, ask Claude to undo it.
 
 ## What's where
 
 | Folder | What |
 |---|---|
-| `prototypes/v3/` | the current website |
-| `prototypes/assets/` | images used on the site |
+| `site/` | the website, exactly what gets published |
+| `site/assets/` | images used on the site |
 | `docs/brand/` | your brand brain and the log of your decisions |
 | `docs/source-images/` | your original images (drop new ones here) |
 | `docs/mockups/` | your design mockups |

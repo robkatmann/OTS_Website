@@ -4,6 +4,12 @@ Every decision Karen and Kristin make about the look, feel and content, with the
 
 Format: `date · area · decision · why (if said)`
 
+## 2026-10-04 · Going live
+
+- Launch · **Fine to go live with the placeholder texts** (pieces, prices, Shelly story); "we will change it later".
+- Launch · The Squarespace domain odetoshelly.com has expired: a new domain is needed. Hosting: Netlify proposed; they read mixed reviews, so the choice is open.
+- Files · The website now lives in `site/` (only what gets published); the design rounds stay in `prototypes/`.
+
 ## 2026-10-04 · New About, Collection with photos
 
 - Collection · **Picture 9: the bride and groom photo removed**; "the remaining white space can stay" (the corset scan and the two strips on that lookbook page stay).

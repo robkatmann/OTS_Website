@@ -18,7 +18,7 @@ The people asking are designers, not programmers. A change is only done when it 
    - Conflicts with a decided rule (taste log, CLAUDE.md design rules): mention the earlier decision kindly and ask if they want to change it.
 3. **Pick the smallest way** (see "Work small" in CLAUDE.md). Visual or uncertain changes: try them on the isolated piece first (a picture, a scratch snippet, one section), show that, and only put the agreed version into the page. Clear changes: edit just those lines.
 4. **Confirm bigger changes** (new section, redesign, removing content, several pages): describe the plan in 2 to 4 plain sentences and wait for a yes.
-5. **Make the change** in `prototypes/v3/`. Words live in the `.html` files; the look lives in `style.css`. Keep `<span ...>` tags paired. New images: put originals in `docs/source-images/`, web copies (max ~2000 px, JPEG) in `prototypes/assets/`.
+5. **Make the change** in `site/`. Words live in the `.html` files; the look lives in `style.css`. Keep `<span ...>` tags paired. New images: put originals in `docs/source-images/`, web copies in `site/assets/` (max ~2000 px, JPEG).
 6. **Check it yourself.** Open the page in the browser (see `ots-previewing-and-sharing`), at desktop width and at phone width (~390 px). No sideways scrolling, information readable, nothing overlapping. Browsers cache: hard refresh.
 7. **Tell them plainly** what changed, where to see it, and anything you were unsure about. Offer a next step if one is obvious.
 8. **Capture new taste.** If they revealed a preference or reason, use `ots-capturing-brand-thinking`.
@@ -33,5 +33,5 @@ The people asking are designers, not programmers. A change is only done when it 
 | Checking only desktop | Always check phone width too |
 | Rewriting a whole page or stylesheet for a small change | Edit the few lines involved; iterate on the isolated piece, then integrate |
 | Explaining in code terms | Plain words: "the space between the two text blocks is bigger now" |
-| Editing `prototypes/v1`, `v2` or `docs/source-images` | Only edit `prototypes/v3` and `prototypes/assets` (the lace pictures in `docs/explorations/lace`: see `ots-redrawing-images-with-code`) |
+| Editing `prototypes/` or `docs/source-images` | Only edit `site/` (the lace pictures in `docs/explorations/lace`: see `ots-redrawing-images-with-code`) |
 | Retyping a typed lace by hand | It is generated: use `ots-redrawing-images-with-code` |
