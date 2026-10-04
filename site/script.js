@@ -364,15 +364,38 @@
       return;
     }
 
-    // no backend: replace the form with the note
-    form.hidden = true;
-    var formNote = document.querySelector('.form-note');
-    if (formNote) formNote.hidden = true;
-    var note = document.createElement('p');
-    note.className = 'received';
-    note.tabIndex = -1;
-    note.innerHTML = 'received. we\'ll write back<span class="blink" aria-hidden="true">_</span>';
-    status.appendChild(note);
-    note.focus();
+    // send it (Web3Forms emails it to contact@odetoshelly.com), then
+    // replace the form with the note. If sending fails, the form stays
+    // filled in and the note points to the email address instead.
+    var button = form.querySelector('.send');
+    var data = new FormData(form);
+    data.set('subject', 'New inquiry from the website: ' + nameEl.value.trim());
+    data.set('replyto', emailEl.value.trim());
+    button.disabled = true;
+    button.firstChild.textContent = 'sending ';
+
+    function done(ok) {
+      var note = document.createElement('p');
+      note.className = 'received';
+      note.tabIndex = -1;
+      if (ok) {
+        form.hidden = true;
+        var formNote = document.querySelector('.form-note');
+        if (formNote) formNote.hidden = true;
+        note.innerHTML = 'received. we\'ll write back<span class="blink" aria-hidden="true">_</span>';
+      } else {
+        button.disabled = false;
+        button.firstChild.textContent = 'send ';
+        note.innerHTML = 'that didn\'t go through. please try again, or write to <a href="mailto:contact@odetoshelly.com">contact@odetoshelly.com</a><span class="blink" aria-hidden="true">_</span>';
+      }
+      status.textContent = '';
+      status.appendChild(note);
+      note.focus();
+    }
+
+    fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function (res) { return res.json(); })
+      .then(function (json) { done(!!json.success); })
+      .catch(function () { done(false); });
   });
 })();

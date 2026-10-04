@@ -170,7 +170,14 @@
       </div>
       <p class="form-note">All fields are required unless marked (optional).</p>
 
-      <form class="form" id="inquiry-form" action="#" method="post">
+      <!-- inquiries are emailed to contact@odetoshelly.com by Web3Forms
+           (web3forms.com). The access key comes from there; it is meant
+           to be public. -->
+      <form class="form" id="inquiry-form" action="https://api.web3forms.com/submit" method="post">
+        <input type="hidden" name="access_key" value="5f476fe7-d4f1-4fa9-8dc7-ccc726a72aaf">
+        <input type="hidden" name="subject" value="New inquiry from the website">
+        <input type="hidden" name="from_name" value="odetoshelly website">
+        <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="field">
           <label class="lbl" for="f-name">Name</label>

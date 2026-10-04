@@ -763,6 +763,9 @@ a {
   cursor: pointer;
 }
 .send:hover { background: var(--ink); color: var(--paper); }
+.send:disabled { opacity: .5; cursor: default; }
+/* a trap for spam robots: invisible to people */
+.botcheck { display: none; }
 
 .form-print {
   position: static;

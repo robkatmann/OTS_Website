@@ -28,7 +28,7 @@ Also keep **this file** current: if the project structure, workflow or rules cha
 | What | Where |
 |---|---|
 | **The website (edit this; this folder is what gets published)** | `site/`: `index.html` (Home), `bridal.html`, `collection.html`, `about.html`, `contact.html`, one shared `style.css` (the look), `script.js` (small effects and the form) |
-| Publishing | Cloudflare (free) publishes `site/` from GitHub on every upload. `wrangler.jsonc` tells Cloudflare which folder to serve. Domain odetoshelly.com: moving from Squarespace to Porkbun (October 2026) |
+| Publishing | Cloudflare (free) publishes `site/` from GitHub on every upload. `wrangler.jsonc` tells Cloudflare which folder to serve. Domain odetoshelly.com: moving from Squarespace to Porkbun (October 2026). Inquiry form on Bridal: sent by Web3Forms (free, web3forms.com) to contact@odetoshelly.com; its access key is in `site/bridal.html` |
 | Images used by the site | `site/assets/` (web-sized; only what the site shows). `prototypes/assets/` belongs to the earlier rounds and the lace work |
 | Original images from the designers | `docs/source-images/` (never edit; make web copies in `site/assets/`) |
 | Collection pictures | `site/assets/lookbook/lookbook-01.jpg` to `-20.jpg`: the 20 pages of `docs/source-images/collection page pictures/OTS_Lookbook_August_2026.pdf`, one picture per page, trimmed to the photos, 2000 px wide (rendered with PyMuPDF in a scratch virtual environment). Placement per picture is in `collection.html` (`--x`, `--w`, `--y`). |
