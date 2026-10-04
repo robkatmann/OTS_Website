@@ -7,7 +7,7 @@ Format: `date · area · decision · why (if said)`
 ## 2026-10-04 · Going live
 
 - Launch · **Fine to go live with the placeholder texts** (pieces, prices, Shelly story); "we will change it later".
-- Launch · The Squarespace domain odetoshelly.com has expired: a new domain is needed. Hosting: Netlify proposed; they read mixed reviews, so the choice is open.
+- Launch · The Squarespace domain odetoshelly.com had expired; it is being **moved to Porkbun** (transfer started, waiting for the code from Squarespace). **Hosting: Cloudflare Pages** (free, no traffic limit), publishing the `site/` folder.
 - Files · The website now lives in `site/` (only what gets published); the design rounds stay in `prototypes/`.
 
 ## 2026-10-04 · New About, Collection with photos

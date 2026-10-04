@@ -1,0 +1,10 @@
+// Cloudflare publishing settings: serve the website folder as it is.
+// (Used when the site is deployed as a Cloudflare Worker; Cloudflare
+// Pages ignores this file and uses "Build output directory: site".)
+{
+  "name": "ode-to-shelly",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./site"
+  }
+}
