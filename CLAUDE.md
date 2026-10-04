@@ -41,6 +41,16 @@ Also keep **this file** current: if the project structure, workflow or rules cha
 
 It is plain HTML, CSS and a little JavaScript: no build step, no frameworks. A proper production setup (likely Astro, with texts in simple content files) is planned but not started.
 
+## Work small: the most efficient way first
+
+Before any change or addition, think critically about the cheapest way to get it right, and say it in one line if it is not obvious. Time and tokens matter.
+
+- **Isolate the piece.** Work only on the part being discussed (a picture, a heading, one section), not the whole page. Example: for the About lace, the pictures were made and compared on their own in `docs/explorations/lace/`, and only the chosen one goes into the page.
+- **Iterate on the piece, integrate once.** Try variations on the small piece (a picture file, a small test snippet in your scratch area). When Karen and Kristin agree, put that one piece into the page with a small, targeted edit.
+- **Edit, don't rewrite.** Change the few lines that need it; never regenerate or rewrite a whole page, stylesheet or picture set for a small change. Reuse the tools in `tools/` instead of redoing work by hand.
+- **Check only what changed.** Look at the changed part (a crop, one section, one phone-width check), not every page, unless the change affects everything.
+- **Say when a request is expensive.** If a wish means a big rebuild, say so and offer a smaller first step (e.g. "I'll try it on one section first").
+
 ## Working on the site
 
 - Use the `ots-changing-the-website` skill for any change.

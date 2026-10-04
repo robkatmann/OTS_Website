@@ -17,6 +17,8 @@ Then open http://127.0.0.1:8765 (start page with all versions) or http://127.0.0
 
 Opening `prototypes/v3/index.html` by double-click also works, but a few effects behave better with the server.
 
+When checking a change, look at the changed part (and its phone view) rather than every page, unless the change affects all pages.
+
 ## Common problems
 
 | Problem | Fix |

@@ -14,7 +14,7 @@ Everything made for OTS should feel like it came from the same torn magazine pag
 1. **Read** `docs/brand/brand-brain.md` fully and the newest entries in `docs/brand/taste-log.md`.
 2. **Clarify the job** with 1 to 3 questions if missing: what it is for, where it appears (feed, story, shop, print), what it must say (facts, dates, prices), any images to use (look in `docs/source-images/`).
 3. **Translate the brand to the medium** using the checklist below. Say briefly how you translated it.
-4. **Offer 2 or 3 variations** when the direction is open, and recommend one.
+4. **Offer 2 or 3 variations** when the direction is open, and recommend one. Keep them small (one post, one paragraph, one section) until a direction is chosen; then build the full piece.
 5. **Never invent facts** (prices, dates, materials, who Shelly is). Use placeholders clearly marked as such and ask.
 6. **Capture** any new feedback with `ots-capturing-brand-thinking`.
 
