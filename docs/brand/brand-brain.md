@@ -32,7 +32,7 @@ Labels used below: **(said)** the designers said it directly · **(one-pager)** 
 
 ## 4. The offer (website facts)
 
-- **The Shelly Custom:** full custom bridal, **from 20.000 DKK**: design development, fabric and trim sourcing, fittings, construction, final adjustments. Final price depends on complexity and materials. (said)
+- **The Shelly Custom:** full custom bridal (starting price 20.000 DKK, **not shown on the website**: "it might scare customers away", 2026-10-05): design development, fabric and trim sourcing, fittings, construction, final adjustments. Final price depends on complexity and materials. (said)
 - **Semi-custom:** an existing OTS design, adapted. (said)
 - **The Collection:** build a look from existing OTS pieces. Later a ready-to-wear web shop. (said)
 - **Process:** 01 Get in touch, 02 Meet (Copenhagen studio), 03 Create, 04 Wear. (said)
