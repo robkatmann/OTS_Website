@@ -4,6 +4,10 @@ Every decision Karen and Kristin make about the look, feel and content, with the
 
 Format: `date · area · decision · why (if said)`
 
+## 2026-10-05 · Bridal
+
+- Bridal · **"Starting from 20.000 DKK" removed from The Shelly Custom** · "it might scare customers away". The line "The final price depends on the complexity and materials of the look" stays.
+
 ## 2026-10-04 · Going live
 
 - Launch · **Fine to go live with the placeholder texts** (pieces, prices, Shelly story); "we will change it later".
